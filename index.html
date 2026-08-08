@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIBNM · Laboratório Integrativo de Bioprospecção de Novas Moléculas</title>
+<meta name="description" content="LIBNM — Laboratório Integrativo de Bioprospecção de Novas Moléculas. Institute of Chemistry, University of São Paulo. Drug design, PCSK9 inhibitors, virtual screening and molecular dynamics.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Palette lifted directly from the LIBNM mascot */
+    --petrol:      #004a4a;   /* deep petrol outline */
+    --petrol-2:    #006060;
+    --teal:        #2fa0a0;   /* mascot body */
+    --teal-bright: #17bebb;   /* DNA / molecule cyan accent */
+    --mint:        #b0e0d0;   /* belly light */
+    --mint-pale:   #d4efe6;   /* petri dish pale */
+    --mint-wash:   #e8f5f0;
+    --cream:       #f5f2ea;   /* mascot background */
+    --cream-2:     #efeadf;
+    --ink:         #063b3b;   /* text */
+    --ink-soft:    #2c5a5a;
+    --line:        rgba(0,74,74,0.14);
+    --line-soft:   rgba(0,74,74,0.08);
+
+    --font-display:'Baloo 2', system-ui, sans-serif;
+    --font-body:   'Nunito', system-ui, sans-serif;
+    --font-mono:   'JetBrains Mono', monospace;
+    --maxw: 1180px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:var(--font-body);
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background:var(--teal-bright); color:#fff; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px;
+    letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--teal); display:inline-flex; align-items:center; gap:9px; font-weight:500;
+  }
+  .eyebrow::before{ content:""; width:22px; height:2px; background:var(--teal-bright); display:inline-block; border-radius:2px; }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(245,242,234,0.86);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav{ max-width:var(--maxw); margin:0 auto; padding:12px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand img{ width:46px; height:46px; border-radius:50%; border:2px solid var(--petrol); background:var(--mint-pale); }
+  .brand-text .b1{ font-family:var(--font-display); font-weight:700; font-size:21px; color:var(--petrol); line-height:1; letter-spacing:0.02em; }
+  .brand-text .b2{ font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); opacity:0.8; }
+  .nav-right{ display:flex; align-items:center; gap:26px; }
+  .nav-links{ display:flex; align-items:center; gap:26px; }
+  .nav-links a{ font-size:15px; font-weight:600; color:var(--ink-soft); position:relative; }
+  .nav-links a::after{ content:""; position:absolute; left:0; bottom:-6px; width:0; height:2.5px; background:var(--teal-bright); border-radius:2px; transition:width 0.25s ease; }
+  .nav-links a:hover{ color:var(--petrol); }
+  .nav-links a:hover::after{ width:100%; }
+
+  .lang-toggle{ display:flex; border:2px solid var(--petrol); border-radius:100px; overflow:hidden; font-family:var(--font-mono); font-size:12px; font-weight:500; }
+  .lang-toggle button{ background:transparent; border:none; cursor:pointer; padding:5px 12px; color:var(--ink-soft); transition:background 0.2s, color 0.2s; }
+  .lang-toggle button.active{ background:var(--petrol); color:var(--cream); }
+
+  .nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .nav-toggle svg{ width:26px; height:26px; stroke:var(--petrol); }
+
+  /* ---------- Hero ---------- */
+  .hero{ position:relative; padding:60px 0 84px; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; top:-120px; right:-120px; width:520px; height:520px;
+    background:radial-gradient(circle, rgba(23,190,187,0.12), transparent 68%); pointer-events:none;
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center; position:relative; }
+  .hero h1{ font-family:var(--font-display); font-weight:700; font-size:clamp(38px,5.4vw,64px); line-height:1.04; letter-spacing:-0.01em; color:var(--petrol); margin-top:20px; }
+  .hero h1 em{ font-style:normal; color:var(--teal-bright); position:relative; white-space:nowrap; }
+  .hero h1 em::after{ content:""; position:absolute; left:0; bottom:4px; width:100%; height:10px; background:var(--mint); z-index:-1; border-radius:4px; opacity:0.7; }
+  .hero .lead{ font-size:clamp(16px,1.7vw,19px); color:var(--ink-soft); max-width:46ch; margin-top:22px; }
+  .hero-cta{ display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+  .btn{ font-family:var(--font-body); font-weight:700; font-size:15.5px; padding:13px 26px; border-radius:100px; cursor:pointer; transition:transform 0.15s ease, box-shadow 0.2s ease; display:inline-flex; align-items:center; gap:9px; border:2.5px solid var(--petrol); }
+  .btn-primary{ background:var(--petrol); color:var(--cream); }
+  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 8px 0 rgba(0,74,74,0.18); }
+  .btn-ghost{ background:transparent; color:var(--petrol); }
+  .btn-ghost:hover{ transform:translateY(-3px); box-shadow:0 8px 0 rgba(23,190,187,0.28); }
+
+  .hero-visual{ position:relative; }
+  .hero-visual .mascot{ width:100%; max-width:480px; margin:0 auto; filter:drop-shadow(0 18px 30px rgba(0,74,74,0.18)); animation:float 6s ease-in-out infinite; }
+  @keyframes float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-14px); } }
+  .hero-visual .blob{ position:absolute; inset:0; margin:auto; width:88%; aspect-ratio:1; background:var(--mint-wash); border-radius:46% 54% 52% 48% / 55% 48% 52% 45%; z-index:-1; }
+
+  /* ---------- Stats ---------- */
+  .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:56px; }
+  .stat{ background:#fff; border:2px solid var(--petrol); border-radius:18px; padding:22px 20px; box-shadow:0 5px 0 rgba(0,74,74,0.1); }
+  .stat .n{ font-family:var(--font-display); font-weight:700; font-size:34px; line-height:1; color:var(--petrol); }
+  .stat .n span{ color:var(--teal-bright); }
+  .stat .l{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-soft); margin-top:9px; }
+
+  /* ---------- Section head ---------- */
+  section{ position:relative; }
+  .sec-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:30px; margin-bottom:48px; }
+  .sec-head h2{ font-family:var(--font-display); font-weight:700; font-size:clamp(30px,3.8vw,46px); line-height:1.05; color:var(--petrol); margin-top:14px; }
+  .sec-head p{ color:var(--ink-soft); max-width:40ch; font-size:15.5px; }
+
+  /* ---------- About ---------- */
+  .about{ padding:92px 0; }
+  .about .wrap{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start; }
+  .about h2{ font-family:var(--font-display); font-weight:700; font-size:clamp(28px,3.4vw,42px); line-height:1.08; color:var(--petrol); margin-top:16px; }
+  .about-body p{ font-size:16.5px; color:var(--ink-soft); margin-bottom:16px; }
+  .about-body p strong{ color:var(--petrol); font-weight:700; }
+  .about-pills{ display:flex; flex-wrap:wrap; gap:9px; margin-top:22px; }
+  .pill{ font-family:var(--font-mono); font-size:12px; padding:7px 14px; border:1.5px solid var(--line); border-radius:100px; color:var(--ink-soft); background:#fff; }
+
+  /* ---------- Research ---------- */
+  .research{ padding:92px 0; background:var(--mint-wash); }
+  .research-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+  .rcard{ background:#fff; border:2.5px solid var(--petrol); border-radius:22px; padding:32px 30px 34px; box-shadow:0 6px 0 rgba(0,74,74,0.1); transition:transform 0.2s ease, box-shadow 0.2s ease; display:flex; flex-direction:column; }
+  .rcard:hover{ transform:translateY(-4px); box-shadow:0 10px 0 rgba(0,74,74,0.12); }
+  .rcard-num{ font-family:var(--font-mono); font-size:12px; color:var(--teal); opacity:0.7; letter-spacing:0.1em; font-weight:500; }
+  .rcard-ico{ width:56px; height:56px; border-radius:14px; background:var(--mint-pale); display:flex; align-items:center; justify-content:center; margin:10px 0 18px; }
+  .rcard-ico svg{ width:32px; height:32px; }
+  .rcard h3{ font-family:var(--font-display); font-weight:700; font-size:22px; line-height:1.12; color:var(--petrol); margin-bottom:10px; }
+  .rcard p{ font-size:15px; color:var(--ink-soft); }
+  .rcard em{ font-style:italic; }
+
+  /* ---------- Team ---------- */
+  .team{ padding:92px 0; }
+  .team-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .member-photo{ aspect-ratio:1; border-radius:50%; overflow:hidden; position:relative; border:3px solid var(--petrol); display:flex; align-items:center; justify-content:center; box-shadow:0 5px 0 rgba(0,74,74,0.1); }
+  .member-photo .initials{ font-family:var(--font-display); font-weight:700; font-size:44px; color:#fff; }
+  .member h4{ font-family:var(--font-display); font-weight:600; font-size:18px; color:var(--petrol); margin-top:16px; line-height:1.15; }
+  .member .role{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em; color:var(--teal); text-transform:uppercase; margin-top:4px; }
+  .member .desc{ font-size:13.5px; color:var(--ink-soft); margin-top:8px; }
+
+  /* ---------- CV links ---------- */
+  .cv-links{ display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+  .cv-link{ font-family:var(--font-mono); font-size:12px; padding:8px 16px; border:1.5px solid var(--petrol); border-radius:100px; color:var(--petrol); background:#fff; display:inline-flex; align-items:center; gap:7px; transition:transform 0.15s ease, background 0.15s ease, color 0.15s ease; }
+  .cv-link:hover{ background:var(--petrol); color:var(--cream); transform:translateY(-2px); }
+
+  /* ---------- Student project cards ---------- */
+  .stu-groups{ display:flex; flex-direction:column; gap:40px; margin-top:60px; padding-top:44px; border-top:2px solid var(--line); }
+  .stu-group-label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal); margin-bottom:18px; padding-bottom:8px; border-bottom:1.5px solid var(--line); font-weight:500; }
+  .stu-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .stu-card{ background:#fff; border:1.5px solid var(--line); border-radius:16px; padding:20px 20px 18px; display:flex; flex-direction:column; gap:8px; }
+  .stu-card h5{ font-family:var(--font-display); font-weight:600; font-size:16px; color:var(--petrol); line-height:1.2; }
+  .stu-card .proj{ font-size:13px; color:var(--ink-soft); line-height:1.45; flex-grow:1; }
+  .stu-badges{ display:flex; flex-wrap:wrap; gap:7px; margin-top:6px; }
+  .stu-badge{ font-family:var(--font-mono); font-size:10.5px; padding:5px 10px; border-radius:100px; border:1.5px solid var(--line); color:var(--ink-soft); white-space:nowrap; transition:border-color 0.15s, color 0.15s; }
+  a.stu-badge:hover{ border-color:var(--teal-bright); color:var(--petrol); }
+  .stu-badge.placeholder{ border-style:dashed; opacity:0.55; cursor:default; }
+
+  /* ---------- Publications ---------- */
+  .pubs{ padding:92px 0; background:var(--mint-wash); }
+  .pub-list{ border-top:2.5px solid var(--petrol); }
+  .pub{ display:grid; grid-template-columns:80px 1fr auto; gap:26px; align-items:center; padding:24px 0; border-bottom:1.5px solid var(--line); transition:padding-left 0.25s ease; }
+  .pub:hover{ padding-left:12px; }
+  .pub-year{ font-family:var(--font-display); font-weight:700; font-size:26px; color:var(--teal-bright); }
+  .pub-title{ font-size:16.5px; font-weight:700; line-height:1.35; color:var(--petrol); }
+  .pub-meta{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); margin-top:5px; }
+  .pub-tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:100px; border:1.5px solid var(--line); white-space:nowrap; color:var(--ink-soft); background:#fff; }
+
+  /* ---------- Contact ---------- */
+  .contact{ padding:92px 0; background:var(--petrol); color:var(--cream); }
+  .contact .wrap{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  .contact .eyebrow{ color:var(--mint); }
+  .contact .eyebrow::before{ background:var(--teal-bright); }
+  .contact h2{ font-family:var(--font-display); font-weight:700; font-size:clamp(30px,4vw,50px); line-height:1.04; margin-top:16px; }
+  .contact h2 em{ font-style:normal; color:var(--teal-bright); }
+  .cinfo-row{ display:flex; gap:15px; align-items:flex-start; padding:16px 0; border-bottom:1px solid rgba(245,242,234,0.16); }
+  .cinfo-row svg{ width:22px; height:22px; stroke:var(--teal-bright); flex-shrink:0; margin-top:3px; }
+  .cinfo-row .k{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(245,242,234,0.6); }
+  .cinfo-row .v{ font-size:15.5px; margin-top:3px; color:var(--cream); }
+  .cinfo-row .v a{ border-bottom:1.5px solid var(--teal-bright); }
+
+  form{ display:flex; flex-direction:column; gap:15px; }
+  form label{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:rgba(245,242,234,0.65); margin-bottom:-8px; }
+  form input, form textarea{ font-family:var(--font-body); font-size:15px; padding:13px 16px; border:1.5px solid rgba(245,242,234,0.24); background:rgba(245,242,234,0.06); color:var(--cream); border-radius:12px; transition:border-color 0.2s; }
+  form input::placeholder, form textarea::placeholder{ color:rgba(245,242,234,0.4); }
+  form input:focus, form textarea:focus{ outline:none; border-color:var(--teal-bright); }
+  form textarea{ resize:vertical; min-height:110px; }
+  form button{ align-self:flex-start; margin-top:4px; background:var(--teal-bright); color:var(--petrol); border:2.5px solid var(--teal-bright); font-weight:700; }
+  form button:hover{ transform:translateY(-3px); box-shadow:0 8px 0 rgba(23,190,187,0.3); }
+
+  /* ---------- Affiliations ---------- */
+  .affil{ padding:56px 0; background:var(--cream); }
+  .affil .wrap{ display:flex; flex-direction:column; align-items:center; gap:28px; }
+  .affil-label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); }
+  .affil-logos{ display:flex; align-items:center; justify-content:center; gap:40px; flex-wrap:wrap; }
+  .affil-badge{ display:flex; flex-direction:column; align-items:center; gap:8px; padding:20px 30px; border:2px solid var(--petrol); border-radius:18px; background:#fff; min-width:150px; transition:transform 0.2s; }
+  .affil-badge:hover{ transform:translateY(-4px); }
+  .affil-badge .acr{ font-family:var(--font-display); font-weight:700; font-size:28px; color:var(--petrol); letter-spacing:0.02em; }
+  .affil-badge .acr .hl{ color:var(--teal-bright); }
+  .affil-badge .full{ font-size:11.5px; color:var(--ink-soft); text-align:center; line-height:1.3; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--ink); color:rgba(245,242,234,0.6); padding:36px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+  footer .fbrand{ display:flex; align-items:center; gap:12px; }
+  footer .fbrand img{ width:38px; height:38px; border-radius:50%; }
+  footer .fbrand .ft{ font-family:var(--font-display); font-weight:600; font-size:15px; color:var(--cream); }
+  footer .fmeta{ font-family:var(--font-mono); font-size:12px; }
+
+  /* ---------- Reveal ---------- */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; gap:20px; text-align:center; }
+    .hero-copy .eyebrow{ justify-content:center; }
+    .hero .lead{ margin-left:auto; margin-right:auto; }
+    .hero-cta{ justify-content:center; }
+    .hero-visual{ order:-1; max-width:360px; margin:0 auto; }
+    .about .wrap, .contact .wrap{ grid-template-columns:1fr; gap:36px; }
+    .stats{ grid-template-columns:repeat(2,1fr); }
+    .research-grid{ grid-template-columns:1fr; }
+    .team-grid{ grid-template-columns:repeat(2,1fr); }
+    .stu-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:640px){
+    .nav-links{ display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:flex-start; gap:0; background:var(--cream); border-bottom:1px solid var(--line); padding:8px 28px 18px; }
+    .nav-links.open{ display:flex; }
+    .nav-links a{ padding:12px 0; width:100%; border-bottom:1px solid var(--line-soft); }
+    .nav-toggle{ display:block; }
+    .stats{ grid-template-columns:1fr 1fr; }
+    .pub{ grid-template-columns:56px 1fr; }
+    .pub-tag{ display:none; }
+    .team-grid{ grid-template-columns:1fr 1fr; }
+    .sec-head{ flex-direction:column; align-items:flex-start; }
+    .stu-grid{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; transition:none !important; }
+    .reveal{ opacity:1; transform:none; }
+    .hero-visual .mascot{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header>
+  <nav>
+    <a href="#top" class="brand">
+      <img src="logo.png" alt="LIBNM mascote">
+      <span class="brand-text">
+        <span class="b1">LIBNM</span><br>
+        <span class="b2">Ferreira Lab · USP</span>
+      </span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-links" id="navlinks">
+        <a href="#about" data-pt="Sobre" data-en="About">Sobre</a>
+        <a href="#research" data-pt="Pesquisa" data-en="Research">Pesquisa</a>
+        <a href="#team" data-pt="Equipe" data-en="Team">Equipe</a>
+        <a href="#pubs" data-pt="Publicações" data-en="Publications">Publicações</a>
+        <a href="#contact" data-pt="Contato" data-en="Contact">Contato</a>
+      </div>
+      <div class="lang-toggle">
+        <button id="lang-pt" class="active" onclick="setLang('pt')">PT</button>
+        <button id="lang-en" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="nav-toggle" id="navtoggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow" data-pt="Bioprospecção · Drug Design · Modelagem" data-en="Bioprospecting · Drug Design · Modeling">Bioprospecção · Drug Design · Modelagem</span>
+        <h1 data-pt='Novas moléculas para <em>reduzir o colesterol</em>.' data-en='New molecules to <em>reduce cholesterol</em>.'>Novas moléculas para <em>reduzir o colesterol</em>.</h1>
+        <p class="lead" data-pt="O Laboratório Integrativo de Bioprospecção de Novas Moléculas desenvolve inibidores e degradadores da PCSK9 e outros alvos do metabolismo lipídico, unindo modelagem computacional, síntese e validação experimental." data-en="The Integrative Laboratory for the Bioprospecting of New Molecules develops inhibitors and degraders of PCSK9 and other lipid-metabolism targets, bridging computational modeling, synthesis and experimental validation.">O Laboratório Integrativo de Bioprospecção de Novas Moléculas desenvolve inibidores e degradadores da PCSK9 e outros alvos do metabolismo lipídico, unindo modelagem computacional, síntese e validação experimental.</p>
+        <div class="hero-cta">
+          <a href="#research" class="btn btn-primary" data-pt="Nossas pesquisas →" data-en="Our research →">Nossas pesquisas →</a>
+          <a href="#contact" class="btn btn-ghost" data-pt="Colaborar" data-en="Collaborate">Colaborar</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="blob"></div>
+        <img src="mascote.png" class="mascot" alt="LIBNM — mascote cientista com placa de Petri">
+      </div>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="n">PCSK9</div><div class="l" data-pt="Alvo terapêutico central" data-en="Core therapeutic target">Alvo terapêutico central</div></div>
+      <div class="stat"><div class="n">MMDSP</div><div class="l" data-pt="Plataforma de triagem molecular" data-en="Molecular screening platform">Plataforma de triagem molecular</div></div>
+      <div class="stat"><div class="n">9</div><div class="l" data-pt="Orientandos ativos" data-en="Active advisees">Orientandos ativos</div></div>
+      <div class="stat"><div class="n">LDL<span>-c</span></div><div class="l" data-pt="Foco no metabolismo lipídico" data-en="Lipid-metabolism focus">Foco no metabolismo lipídico</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-side reveal">
+      <span class="eyebrow" data-pt="Sobre o laboratório" data-en="About the lab">Sobre o laboratório</span>
+      <h2 data-pt="Do modelo computacional à molécula que importa." data-en="From the computational model to the molecule that matters.">Do modelo computacional à molécula que importa.</h2>
+    </div>
+    <div class="about-body reveal">
+      <p data-pt="O <strong>LIBNM</strong> — Laboratório Integrativo de Bioprospecção de Novas Moléculas — é liderado pelo Prof. Dr. Glaucio Monteiro Ferreira no Instituto de Química da Universidade de São Paulo, em colaboração com o grupo do Prof. Mario Hiroyuki Hirata." data-en="The <strong>LIBNM</strong> — Integrative Laboratory for the Bioprospecting of New Molecules — is led by Prof. Dr. Glaucio Monteiro Ferreira at the Institute of Chemistry, University of São Paulo, in collaboration with Prof. Mario Hiroyuki Hirata's group.">O <strong>LIBNM</strong> — Laboratório Integrativo de Bioprospecção de Novas Moléculas — é liderado pelo Prof. Dr. Glaucio Monteiro Ferreira no Instituto de Química da Universidade de São Paulo, em colaboração com o grupo do Prof. Mario Hiroyuki Hirata.</p>
+      <p data-pt="Nosso foco central é a <strong>PCSK9</strong>, protease que controla a reciclagem do receptor de LDL e cujo ganho de função eleva o colesterol plasmático — mecanismo-chave da <strong>hipercolesterolemia familial</strong>. Buscamos alternativas às estatinas (limitadas por efeitos musculares) e aos anticorpos injetáveis de alto custo." data-en="Our core focus is <strong>PCSK9</strong>, a protease that controls LDL-receptor recycling and whose gain of function raises plasma cholesterol — a key mechanism of <strong>familial hypercholesterolemia</strong>. We seek alternatives to statins (limited by muscular side effects) and to costly injectable antibodies.">Nosso foco central é a <strong>PCSK9</strong>, protease que controla a reciclagem do receptor de LDL e cujo ganho de função eleva o colesterol plasmático — mecanismo-chave da <strong>hipercolesterolemia familial</strong>. Buscamos alternativas às estatinas (limitadas por efeitos musculares) e aos anticorpos injetáveis de alto custo.</p>
+      <p data-pt="Nossa abordagem é integrativa: da <strong>modelagem e triagem virtual</strong> à <strong>síntese</strong> de moléculas — incluindo plataformas <strong>LYTAC</strong> para degradação direcionada — e à <strong>validação in vitro</strong>, organizadas na plataforma <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform)." data-en="Our approach is integrative: from <strong>modeling and virtual screening</strong> to the <strong>synthesis</strong> of molecules — including <strong>LYTAC</strong> platforms for targeted degradation — and <strong>in vitro validation</strong>, organized within the <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform).">Nossa abordagem é integrativa: da <strong>modelagem e triagem virtual</strong> à <strong>síntese</strong> de moléculas — incluindo plataformas <strong>LYTAC</strong> para degradação direcionada — e à <strong>validação in vitro</strong>, organizadas na plataforma <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform).</p>
+      <p data-pt="Glaucio é bacharel em Farmácia pela UFES, doutor em Ciências Farmacêuticas (Química Medicinal) pela USP (2015–2018), com pós-doutorados na FCF-USP, no Instituto Dante Pazzanese de Cardiologia e na Universität Tübingen (Alemanha). Hoje lidera o LIBNM como Pesquisador Associado com bolsa <strong>FAPESP Jovem Pesquisador</strong> (processo 2023/15933-4, 2026–2030)." data-en="Glaucio holds a B.Sc. in Pharmacy from UFES and a Ph.D. in Pharmaceutical Sciences (Medicinal Chemistry) from USP (2015–2018), with postdoctoral work at USP's School of Pharmaceutical Sciences, the Dante Pazzanese Institute of Cardiology, and Universität Tübingen (Germany). He now leads LIBNM as an Associate Researcher under a <strong>FAPESP Young Investigator</strong> award (grant 2023/15933-4, 2026–2030).">Glaucio é bacharel em Farmácia pela UFES, doutor em Ciências Farmacêuticas (Química Medicinal) pela USP (2015–2018), com pós-doutorados na FCF-USP, no Instituto Dante Pazzanese de Cardiologia e na Universität Tübingen (Alemanha). Hoje lidera o LIBNM como Pesquisador Associado com bolsa <strong>FAPESP Jovem Pesquisador</strong> (processo 2023/15933-4, 2026–2030).</p>
+      <div class="cv-links">
+        <a class="cv-link" href="http://lattes.cnpq.br/7189579305342139" target="_blank" rel="noopener">Currículo Lattes ↗</a>
+        <a class="cv-link" href="https://orcid.org/0000-0002-1952-9428" target="_blank" rel="noopener">ORCID ↗</a>
+        <a class="cv-link" href="https://bv.fapesp.br/pt/pesquisador/703612/glaucio-monteiro-ferreira/" target="_blank" rel="noopener">FAPESP ↗</a>
+      </div>
+      <div class="about-pills">
+        <span class="pill" data-pt="Inibidores de PCSK9" data-en="PCSK9 inhibitors">Inibidores de PCSK9</span>
+        <span class="pill" data-pt="Degradação LYTAC" data-en="LYTAC degradation">Degradação LYTAC</span>
+        <span class="pill" data-pt="Triagem virtual (SBVS)" data-en="Virtual screening (SBVS)">Triagem virtual (SBVS)</span>
+        <span class="pill" data-pt="Dinâmica molecular" data-en="Molecular dynamics">Dinâmica molecular</span>
+        <span class="pill" data-pt="Hipercolesterolemia familial" data-en="Familial hypercholesterolemia">Hipercolesterolemia familial</span>
+        <span class="pill" data-pt="Síntese orgânica" data-en="Organic synthesis">Síntese orgânica</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section class="research" id="research">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow" data-pt="O que investigamos" data-en="What we investigate">O que investigamos</span>
+        <h2 data-pt="Linhas de pesquisa" data-en="Research lines">Linhas de pesquisa</h2>
+      </div>
+      <p data-pt="Quatro frentes que se retroalimentam dentro de um único ciclo de descoberta de fármacos." data-en="Four fronts that feed one another within a single drug-discovery cycle.">Quatro frentes que se retroalimentam dentro de um único ciclo de descoberta de fármacos.</p>
+    </div>
+    <div class="research-grid reveal">
+      <div class="rcard">
+        <span class="rcard-num">01</span>
+        <div class="rcard-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#17bebb" stroke-width="2.2"><rect x="3" y="5" width="26" height="22" rx="2"/><path d="M3 11 h26"/><circle cx="7" cy="8" r="1" fill="#17bebb"/><circle cx="11" cy="8" r="1" fill="#17bebb"/><path d="M8 17 h8 M8 22 h13 M19 17 h5"/></svg></div>
+        <h3 data-pt="Triagem virtual de inibidores de PCSK9" data-en="Virtual screening of PCSK9 inhibitors">Triagem virtual de inibidores de PCSK9</h3>
+        <p data-pt="SBVS de grandes bibliotecas para identificar compostos com complementaridade à PCSK9, seguido de avaliação de eficácia, toxicidade e ensaios de captação de LDL." data-en="SBVS of large libraries to identify compounds complementary to PCSK9, followed by efficacy and toxicity assessment and LDL-uptake assays.">SBVS de grandes bibliotecas para identificar compostos com complementaridade à PCSK9, seguido de avaliação de eficácia, toxicidade e ensaios de captação de LDL.</p>
+      </div>
+      <div class="rcard">
+        <span class="rcard-num">02</span>
+        <div class="rcard-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#2fa0a0" stroke-width="2.2"><circle cx="9" cy="16" r="4"/><circle cx="23" cy="16" r="4"/><path d="M13 16 h6"/><path d="M9 8 v4 M23 8 v4"/><path d="M5 24 h8 M19 24 h8"/></svg></div>
+        <h3 data-pt="Degradação direcionada (LYTAC)" data-en="Targeted degradation (LYTAC)">Degradação direcionada (LYTAC)</h3>
+        <p data-pt="Síntese de plataformas LYTAC para degradação da PCSK9 via ASGPR, incluindo tioglicosídeos por sais de Bunte e exploração da variabilidade de linkers." data-en="Synthesis of LYTAC platforms for PCSK9 degradation via ASGPR, including thioglycosides from Bunte salts and exploration of linker variability.">Síntese de plataformas LYTAC para degradação da PCSK9 via ASGPR, incluindo tioglicosídeos por sais de Bunte e exploração da variabilidade de linkers.</p>
+      </div>
+      <div class="rcard">
+        <span class="rcard-num">03</span>
+        <div class="rcard-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#17bebb" stroke-width="2.2"><circle cx="16" cy="16" r="3" fill="#17bebb"/><path d="M16 3 v4 M16 25 v4 M3 16 h4 M25 16 h4 M6.5 6.5 l3 3 M22.5 22.5 l3 3 M25.5 6.5 l-3 3 M6.5 25.5 l3-3"/></svg></div>
+        <h3 data-pt="Modelagem da hipercolesterolemia familial" data-en="Modeling familial hypercholesterolemia">Modelagem da hipercolesterolemia familial</h3>
+        <p data-pt="Modelagem conformacional avançada da PCSK9 e da Apolipoproteína B100, avaliando o impacto de variantes não-sinônimas sobre estrutura e função." data-en="Advanced conformational modeling of PCSK9 and Apolipoprotein B100, assessing the impact of non-synonymous variants on structure and function.">Modelagem conformacional avançada da PCSK9 e da Apolipoproteína B100, avaliando o impacto de variantes não-sinônimas sobre estrutura e função.</p>
+      </div>
+      <div class="rcard">
+        <span class="rcard-num">04</span>
+        <div class="rcard-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#2fa0a0" stroke-width="2.2"><path d="M5 24 C5 14 27 18 27 8"/><path d="M5 8 C5 18 27 14 27 24"/><circle cx="5" cy="8" r="2.2"/><circle cx="27" cy="8" r="2.2"/><circle cx="5" cy="24" r="2.2"/><circle cx="27" cy="24" r="2.2"/></svg></div>
+        <h3 data-pt="Dinâmica molecular multi-alvo" data-en="Multi-target molecular dynamics">Dinâmica molecular multi-alvo</h3>
+        <p data-pt="Simulações aplicadas a alvos além do metabolismo lipídico — proteases do SARS-CoV-2, CPT1 e Sir2 de <em>T. cruzi</em> — sustentando projetos de CADD." data-en="Simulations applied to targets beyond lipid metabolism — SARS-CoV-2 proteases, CPT1 and <em>T. cruzi</em> Sir2 — supporting CADD projects.">Simulações aplicadas a alvos além do metabolismo lipídico — proteases do SARS-CoV-2, CPT1 e Sir2 de <em>T. cruzi</em> — sustentando projetos de CADD.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="team" id="team">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow" data-pt="Quem faz" data-en="Who we are">Quem faz</span>
+        <h2 data-pt="Equipe" data-en="Team">Equipe</h2>
+      </div>
+      <p data-pt="Um grupo que reúne graduandos, mestrandos e doutorandos em torno do planejamento e da validação de novos fármacos." data-en="A group bringing together undergraduates, master's and doctoral students around the design and validation of new drugs.">Um grupo que reúne graduandos, mestrandos e doutorandos em torno do planejamento e da validação de novos fármacos.</p>
+    </div>
+    <div class="team-grid reveal">
+      <div class="member">
+        <div class="member-photo" style="background:linear-gradient(135deg,#004a4a,#2fa0a0)"><span class="initials">GF</span></div>
+        <h4>Prof. Dr. Glaucio M. Ferreira</h4>
+        <div class="role" data-pt="Líder do grupo" data-en="Group leader">Líder do grupo</div>
+        <p class="desc" data-pt="Planejamento de fármacos assistido por computador, modelagem e dinâmica molecular." data-en="Computer-aided drug design, molecular modeling and dynamics.">Planejamento de fármacos assistido por computador, modelagem e dinâmica molecular.</p>
+      </div>
+      <div class="member">
+        <div class="member-photo" style="background:linear-gradient(135deg,#004a4a,#17bebb)"><span class="initials">MH</span></div>
+        <h4>Prof. Dr. Mario H. Hirata</h4>
+        <div class="role" data-pt="Colaborador" data-en="Collaborator">Colaborador</div>
+        <p class="desc" data-pt="Farmacogenômica e biologia molecular da PCSK9 e do metabolismo lipídico." data-en="Pharmacogenomics and molecular biology of PCSK9 and lipid metabolism.">Farmacogenômica e biologia molecular da PCSK9 e do metabolismo lipídico.</p>
+      </div>
+      <div class="member">
+        <div class="member-photo" style="background:linear-gradient(135deg,#004a4a,#2fa0a0)"><span class="initials">AS</span></div>
+        <h4>Prof. Dr. Alcindo A. dos Santos</h4>
+        <div class="role" data-pt="Host do Jovem Pesquisador FAPESP · Síntese" data-en="FAPESP Young Investigator host · Synthesis">Host do Jovem Pesquisador FAPESP · Síntese</div>
+        <p class="desc" data-pt="Professor Titular do IQ-USP; química orgânica sintética, rotas para plataformas LYTAC e organotelúrio." data-en="Full Professor at IQ-USP; synthetic organic chemistry, routes for LYTAC platforms and organotellurium.">Professor Titular do IQ-USP; química orgânica sintética, rotas para plataformas LYTAC e organotelúrio.</p>
+      </div>
+      <div class="member">
+        <div class="member-photo" style="background:linear-gradient(135deg,#004a4a,#17bebb)"><span class="initials">+</span></div>
+        <h4 data-pt="Junte-se a nós" data-en="Join us">Junte-se a nós</h4>
+        <div class="role" data-pt="Vagas abertas" data-en="Open positions">Vagas abertas</div>
+        <p class="desc" data-pt="Buscamos alunos de IC, mestrado e doutorado com interesse em CADD e síntese." data-en="We seek undergraduate, master's and doctoral students interested in CADD and synthesis.">Buscamos alunos de IC, mestrado e doutorado com interesse em CADD e síntese.</p>
+      </div>
+    </div>
+
+    <!--
+      Para adicionar o ORCID de um(a) aluno(a): troque o href="#" do link com
+      class="stu-badge placeholder" pelo endereço completo, ex:
+      href="https://orcid.org/0000-0000-0000-0000", e remova a classe "placeholder".
+    -->
+    <div class="stu-groups reveal">
+
+      <div class="stu-group">
+        <div class="stu-group-label" data-pt="Pós-Doutorado" data-en="Postdoctoral">Pós-Doutorado</div>
+        <div class="stu-grid">
+          <div class="stu-card">
+            <h5>Eduardo Wilian de Alencar Pereira</h5>
+            <p class="proj" data-pt="Avaliação funcional e transcriptômica de derivados feniletilamina direcionados à PCSK9 para o tratamento de doenças cardiovasculares." data-en="Functional and transcriptomic evaluation of phenethylamine derivatives targeting PCSK9 for the treatment of cardiovascular diseases.">Avaliação funcional e transcriptômica de derivados feniletilamina direcionados à PCSK9 para o tratamento de doenças cardiovasculares.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F19269-0%22" target="_blank" rel="noopener">FAPESP 2026/19269-0</a>
+              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stu-group">
+        <div class="stu-group-label" data-pt="Doutorado" data-en="Doctorate">Doutorado</div>
+        <div class="stu-grid">
+          <div class="stu-card">
+            <h5>Lucas Abreu Diniz</h5>
+            <p class="proj" data-pt="Avaliação estrutural experimental de sondas químicas para validação do sítio de ligação catalítico." data-en="Experimental structural evaluation of chemical probes for catalytic binding-site validation.">Avaliação estrutural experimental de sondas químicas para validação do sítio de ligação catalítico.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F01605-3%22" target="_blank" rel="noopener">FAPESP 2026/01605-3</a>
+              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+            </div>
+          </div>
+          <div class="stu-card">
+            <h5>Orlando Alfredo Pineda Arrieta</h5>
+            <p class="proj" data-pt="Avaliação in vitro de atividade, farmacocinética e toxicidade de inibidores de PCSK9." data-en="In vitro evaluation of activity, pharmacokinetics and toxicity of PCSK9 inhibitors.">Avaliação in vitro de atividade, farmacocinética e toxicidade de inibidores de PCSK9.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F19256-5%22" target="_blank" rel="noopener">FAPESP 2026/19256-5</a>
+              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+            </div>
+          </div>
+          <div class="stu-card">
+            <h5>Amanda Caires</h5>
+            <p class="proj" data-pt="Through the lens of proteasomal degradation: PROTAC bifuncional como nova oportunidade terapêutica para inibição da PCSK9 e homeostase do colesterol." data-en="Through the lens of proteasomal degradation: a bifunctional PROTAC as a new therapeutic opportunity for PCSK9 inhibition and cholesterol homeostasis.">Through the lens of proteasomal degradation: PROTAC bifuncional como nova oportunidade terapêutica para inibição da PCSK9 e homeostase do colesterol.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F19255-9%22" target="_blank" rel="noopener">FAPESP 2026/19255-9</a>
+              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stu-group">
+        <div class="stu-group-label" data-pt="Mestrado" data-en="Master's">Mestrado</div>
+        <div class="stu-grid">
+          <div class="stu-card">
+            <h5>Simone de Faria Nascimento</h5>
+            <p class="proj" data-pt="Plataformas LYTAC para degradação de PCSK9 via ASGPR: síntese de tioglicosídeos via sais de Bunte, variabilidade de linkers e inibidores da PCSK9." data-en="LYTAC platforms for PCSK9 degradation via ASGPR: synthesis of thioglycosides via Bunte salts, linker variability and PCSK9 inhibitors.">Plataformas LYTAC para degradação de PCSK9 via ASGPR: síntese de tioglicosídeos via sais de Bunte, variabilidade de linkers e inibidores da PCSK9.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F18593-8%22" target="_blank" rel="noopener">FAPESP 2026/18593-8</a>
+              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stu-group">
+        <div class="stu-group-label" data-pt="Iniciação Científica" data-en="Undergraduate research">Iniciação Científica</div>
+        <div class="stu-grid">
+          <div class="stu-card">
+            <h5>Gabriel Ribeiro</h5>
+            <p class="proj" data-pt="Desvendando o impacto da Hipercolesterolemia Familiar através da modelagem computacional avançada da Apolipoproteína B100 e suas variantes." data-en="Unraveling the impact of Familial Hypercholesterolemia through advanced computational modeling of Apolipoprotein B100 and its variants.">Desvendando o impacto da Hipercolesterolemia Familiar através da modelagem computacional avançada da Apolipoproteína B100 e suas variantes.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F08559-7%22" target="_blank" rel="noopener">FAPESP 2026/08559-7</a>
+              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+            </div>
+          </div>
+          <div class="stu-card">
+            <h5>Ana Giovanna Pereira Araújo</h5>
+            <p class="proj" data-pt="Síntese da N-{2-[3,5-bis(butiltelanil)fenil]etil}acetamida via acetilação e substituição nucleofílica aromática com reagente de Grignard organotelurídico." data-en="Synthesis of N-{2-[3,5-bis(butyltellanyl)phenyl]ethyl}acetamide via acetylation and aromatic nucleophilic substitution with an organotellurium Grignard reagent.">Síntese da N-{2-[3,5-bis(butiltelanil)fenil]etil}acetamida via acetilação e substituição nucleofílica aromática com reagente de Grignard organotelurídico.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F08028-1%22" target="_blank" rel="noopener">FAPESP 2026/08028-1</a>
+              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+            </div>
+          </div>
+          <div class="stu-card">
+            <h5>Miriam Vitória Marques Meira</h5>
+            <p class="proj" data-pt="Avaliação da captação de LDL por potenciais inibidores da PCSK9." data-en="Evaluation of LDL uptake by potential PCSK9 inhibitors.">Avaliação da captação de LDL por potenciais inibidores da PCSK9.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F01242-8%22" target="_blank" rel="noopener">FAPESP 2026/01242-8</a>
+              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+            </div>
+          </div>
+          <div class="stu-card">
+            <h5>João Gabriel de Souza Carvalho</h5>
+            <p class="proj" data-pt="Síntese de tioglicosídeos via sais de Bunte: rota modular para plataformas de degradação proteica direcionada de alvos intracelulares." data-en="Synthesis of thioglycosides via Bunte salts: a modular route for targeted protein-degradation platforms of intracellular targets.">Síntese de tioglicosídeos via sais de Bunte: rota modular para plataformas de degradação proteica direcionada de alvos intracelulares.</p>
+            <div class="stu-badges">
+              <span class="stu-badge placeholder" title="Adicionar processo FAPESP">FAPESP</span>
+              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PUBLICATIONS ============ -->
+<section class="pubs" id="pubs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow" data-pt="Produção científica" data-en="Scientific output">Produção científica</span>
+        <h2 data-pt="Publicações selecionadas" data-en="Selected publications">Publicações selecionadas</h2>
+      </div>
+      <p data-pt="Uma amostra representativa do trabalho do grupo. Lista completa sob solicitação." data-en="A representative sample of the group's work. Full list available on request.">Uma amostra representativa do trabalho do grupo. Lista completa sob solicitação.</p>
+    </div>
+    <div class="pub-list reveal">
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-main">
+          <div class="pub-title">Antiviral Potential of 3,4-Dimethoxychalcone Against SARS-CoV-2</div>
+          <div class="pub-meta">Ferreira et al. · Current Medicinal Chemistry</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2025</div>
+        <div class="pub-main">
+          <div class="pub-title">Mapping the APOE structurally on missense variants in elderly Brazilians</div>
+          <div class="pub-meta">Ferreira et al. · J. Biomol. Struct. Dyn.</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2025</div>
+        <div class="pub-main">
+          <div class="pub-title">Druggable Targets in Zika Virus: A Systematic Review of Therapeutic Opportunities in Brazil</div>
+          <div class="pub-meta">Ferreira et al. · Current Topics in Medicinal Chemistry</div>
+        </div>
+        <span class="pub-tag" data-pt="Revisão" data-en="Review">Revisão</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div class="pub-main">
+          <div class="pub-title">Predicted deleterious variants in ABCA1, LPL, LPA and KIF6 are associated with statin response</div>
+          <div class="pub-meta">Ferreira, Hirata et al. · Pharmacogenetics and Genomics</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div class="pub-main">
+          <div class="pub-title">Effects of LDLR variants on protein structure and functional activity in HepG2 cells</div>
+          <div class="pub-meta">Ferreira, Hirata et al. · Gene</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title">Dynamics of the personalities of PCSK9 on missense variants from elderly cohort studies</div>
+          <div class="pub-meta">Lopes, Oliveira, Dati, Naslavsky, Ferreira, Hirata · J. Biomol. Struct. Dyn.</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title">Identification of pathogenic variants in Brazilian cohort with Familial hypercholesterolemia</div>
+          <div class="pub-meta">Ferreira, Hirata et al. · Gene</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title"><em>Trypanosoma cruzi</em> Sirtuin 2 as a Relevant Druggable Target: New Inhibitors Developed by Computer-Aided Drug Design</div>
+          <div class="pub-meta">Ferreira, Kronenberger, Maltarollo, Trossini et al. · Pharmaceuticals</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+    </div>
+    <p class="reveal" style="margin-top:20px;"><a class="cv-link" href="https://orcid.org/0000-0002-1952-9428" target="_blank" rel="noopener" data-pt="Lista completa no ORCID ↗" data-en="Full list on ORCID ↗">Lista completa no ORCID ↗</a></p>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-left reveal">
+      <span class="eyebrow" data-pt="Fale com o LIBNM" data-en="Get in touch">Fale com o LIBNM</span>
+      <h2 data-pt="Vamos <em>colaborar</em>?" data-en="Let's <em>collaborate</em>?">Vamos <em>colaborar</em>?</h2>
+      <div class="contact-info">
+        <div class="cinfo-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 5 h18 v14 h-18 z"/><path d="M3 6 l9 7 9-7"/></svg>
+          <div><div class="k" data-pt="E-mail" data-en="Email">E-mail</div><div class="v"><a href="mailto:gmf@usp.br">gmf@usp.br</a></div></div>
+        </div>
+        <div class="cinfo-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21 s-7-6-7-11 a7 7 0 0 1 14 0 c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div><div class="k" data-pt="Onde estamos" data-en="Where we are">Onde estamos</div><div class="v">Institute of Chemistry — University of São Paulo (USP)<br>Av. Prof. Lineu Prestes, 748 — Building 5<br>Butantã · CEP 05508-000 · São Paulo · Brazil</div></div>
+        </div>
+        <div class="cinfo-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7 v5 l3 3"/></svg>
+          <div><div class="k" data-pt="Oportunidades" data-en="Opportunities">Oportunidades</div><div class="v" data-pt="Vagas para IC, mestrado e doutorado" data-en="Openings for undergraduate, master's and doctoral research">Vagas para IC, mestrado e doutorado</div></div>
+        </div>
+        <div class="cinfo-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5 A2.5 2.5 0 0 1 6.5 17 H20"/><path d="M6.5 2 H20 v20 H6.5 A2.5 2.5 0 0 1 4 19.5 v-15 A2.5 2.5 0 0 1 6.5 2 z"/></svg>
+          <div><div class="k" data-pt="Currículo do PI" data-en="PI's curriculum">Currículo do PI</div><div class="v"><a href="http://lattes.cnpq.br/7189579305342139" target="_blank" rel="noopener">Lattes</a> · <a href="https://orcid.org/0000-0002-1952-9428" target="_blank" rel="noopener">ORCID</a> · <a href="https://bv.fapesp.br/pt/pesquisador/703612/glaucio-monteiro-ferreira/" target="_blank" rel="noopener">FAPESP</a></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right reveal">
+      <form id="contact-form" onsubmit="return handleSubmit(event)">
+        <label for="nome" data-pt="Nome" data-en="Name">Nome</label>
+        <input type="text" id="nome" name="nome" data-ph-pt="Seu nome" data-ph-en="Your name" placeholder="Seu nome" required>
+        <label for="email" data-pt="E-mail" data-en="Email">E-mail</label>
+        <input type="email" id="email" name="email" placeholder="voce@instituicao.br" required>
+        <label for="msg" data-pt="Mensagem" data-en="Message">Mensagem</label>
+        <textarea id="msg" name="msg" data-ph-pt="Como podemos colaborar?" data-ph-en="How can we collaborate?" placeholder="Como podemos colaborar?" required></textarea>
+        <button type="submit" class="btn" data-pt="Enviar mensagem →" data-en="Send message →">Enviar mensagem →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AFFILIATIONS ============ -->
+<section class="affil">
+  <div class="wrap">
+    <div class="affil-label reveal" data-pt="Apoio e afiliação institucional" data-en="Institutional support & affiliation">Apoio e afiliação institucional</div>
+    <div class="affil-logos reveal">
+      <a class="affil-badge" href="https://fapesp.br" target="_blank" rel="noopener">
+        <span class="acr">FAPESP</span>
+        <span class="full" data-pt="Fundação de Amparo à Pesquisa do Estado de São Paulo" data-en="São Paulo Research Foundation">Fundação de Amparo à Pesquisa do Estado de São Paulo</span>
+      </a>
+      <a class="affil-badge" href="https://www.iq.usp.br" target="_blank" rel="noopener">
+        <span class="acr">IQ<span class="hl">USP</span></span>
+        <span class="full" data-pt="Instituto de Química — USP" data-en="Institute of Chemistry — USP">Instituto de Química — USP</span>
+      </a>
+      <a class="affil-badge" href="https://www.usp.br" target="_blank" rel="noopener">
+        <span class="acr">USP</span>
+        <span class="full" data-pt="Universidade de São Paulo" data-en="University of São Paulo">Universidade de São Paulo</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="fbrand">
+      <img src="logo.png" alt="LIBNM">
+      <span class="ft">LIBNM · Ferreira Lab</span>
+    </div>
+    <div class="fmeta">© 2026 · Institute of Chemistry — USP</div>
+  </div>
+</footer>
+
+<script>
+  /* ---- Language switcher ---- */
+  function setLang(lang){
+    document.documentElement.lang = (lang === 'en') ? 'en' : 'pt-BR';
+    document.querySelectorAll('[data-pt]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if(val !== null) el.innerHTML = val;
+    });
+    document.querySelectorAll('[data-ph-pt]').forEach(el => {
+      const val = el.getAttribute('data-ph-' + lang);
+      if(val !== null) el.placeholder = val;
+    });
+    document.getElementById('lang-pt').classList.toggle('active', lang === 'pt');
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    try { localStorage.setItem('libnm-lang', lang); } catch(e){}
+  }
+  // Restore saved preference
+  try {
+    const saved = localStorage.getItem('libnm-lang');
+    if(saved === 'en') setLang('en');
+  } catch(e){}
+
+  /* ---- Mobile nav ---- */
+  const toggle = document.getElementById('navtoggle');
+  const links = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  /* ---- Contact form (front-end only) ---- */
+  function handleSubmit(e){
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    const lang = document.documentElement.lang === 'en' ? 'en' : 'pt';
+    btn.textContent = lang === 'en' ? 'Thank you! ✓' : 'Obrigado! ✓';
+    setTimeout(() => {
+      e.target.reset();
+      btn.textContent = lang === 'en' ? 'Send message →' : 'Enviar mensagem →';
+    }, 2600);
+    return false;
+  }
+
+  /* ---- Scroll reveal ---- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
