@@ -137,6 +137,15 @@
   .rcard p{ font-size:15px; color:var(--ink-soft); }
   .rcard em{ font-style:italic; }
 
+  /* ---------- Gallery ---------- */
+  .gallery{ padding:92px 0; }
+  .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .gitem{ border-radius:16px; overflow:hidden; border:2px solid var(--petrol); background:#fff; box-shadow:0 5px 0 rgba(0,74,74,0.1); }
+  .gitem img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+  .gitem .cap{ padding:12px 14px; }
+  .gitem .cap .t{ font-family:var(--font-display); font-weight:600; font-size:14px; color:var(--petrol); line-height:1.25; }
+  .gitem .cap .d{ font-family:var(--font-mono); font-size:11px; color:var(--teal); margin-top:3px; text-transform:uppercase; letter-spacing:0.04em; }
+
   /* ---------- Software ---------- */
   .software{ padding:92px 0; background:var(--mint-wash); }
   .software-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
@@ -167,6 +176,7 @@
   .stu-photo img{ width:100%; height:100%; object-fit:cover; }
   .stu-photo .initials{ font-family:var(--font-display); font-weight:700; font-size:16px; color:#fff; }
   .stu-card h5{ font-family:var(--font-display); font-weight:600; font-size:16px; color:var(--petrol); line-height:1.2; }
+  .stu-role{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--teal); font-weight:600; margin-top:2px; }
   .stu-card .proj{ font-size:13px; color:var(--ink-soft); line-height:1.45; flex-grow:1; }
   .stu-badges{ display:flex; flex-wrap:wrap; gap:7px; margin-top:6px; }
   .stu-badge{ display:inline-flex; align-items:center; gap:5px; font-family:var(--font-mono); font-size:10.5px; padding:5px 10px; border-radius:100px; border:1.5px solid var(--line); color:var(--ink-soft); white-space:nowrap; transition:border-color 0.15s, color 0.15s; }
@@ -246,6 +256,7 @@
     .stats{ grid-template-columns:repeat(2,1fr); }
     .research-grid{ grid-template-columns:1fr; }
     .software-grid{ grid-template-columns:1fr; }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
     .stu-grid{ grid-template-columns:repeat(2,1fr); }
   }
   @media (max-width:640px){
@@ -257,6 +268,7 @@
     .pub{ grid-template-columns:56px 1fr; }
     .pub-tag{ display:none; }
     .sec-head{ flex-direction:column; align-items:flex-start; }
+    .gallery-grid{ grid-template-columns:1fr; }
     .stu-grid{ grid-template-columns:1fr; }
   }
   @media (prefers-reduced-motion:reduce){
@@ -291,6 +303,7 @@
         <a href="#research" data-pt="Pesquisa" data-en="Research">Pesquisa</a>
         <a href="#team" data-pt="Equipe" data-en="Team">Equipe</a>
         <a href="#software" data-pt="Software" data-en="Software">Software</a>
+        <a href="#confra" data-pt="Confraternizações" data-en="Get-togethers">Confraternizações</a>
         <a href="#pubs" data-pt="Publicações" data-en="Publications">Publicações</a>
         <a href="#contact" data-pt="Contato" data-en="Contact">Contato</a>
       </div>
@@ -419,7 +432,10 @@
           <div class="stu-card">
             <div class="stu-head">
               <div class="stu-photo"><img src="team/glaucio.jpg" alt="Prof. Dr. Glaucio M. Ferreira"></div>
-              <h5>Prof. Dr. Glaucio M. Ferreira</h5>
+              <div>
+                <h5>Prof. Dr. Glaucio M. Ferreira</h5>
+                <div class="stu-role" data-pt="Pesquisador Associado do IQ/USP" data-en="Associate Researcher, IQ/USP">Pesquisador Associado do IQ/USP</div>
+              </div>
             </div>
             <p class="proj" data-pt="Química Medicinal aplicada ao desenvolvimento de fármacos, unindo modelagem computacional e síntese orgânica. Líder do grupo." data-en="Medicinal Chemistry applied to drug development, combining computational modeling and organic synthesis. Group leader.">Química Medicinal aplicada ao desenvolvimento de fármacos, unindo modelagem computacional e síntese orgânica. Líder do grupo.</p>
             <div class="stu-badges">
@@ -430,9 +446,12 @@
           <div class="stu-card">
             <div class="stu-head">
               <div class="stu-photo"><img src="team/alcindo.jpg" alt="Prof. Dr. Alcindo A. dos Santos"></div>
-              <h5>Prof. Dr. Alcindo A. dos Santos</h5>
+              <div>
+                <h5>Prof. Dr. Alcindo A. dos Santos</h5>
+                <div class="stu-role" data-pt="Professor do IQ/USP" data-en="Professor, IQ/USP">Professor do IQ/USP</div>
+              </div>
             </div>
-            <p class="proj" data-pt="Professor Titular do IQ-USP; química orgânica sintética, rotas para plataformas LYTAC e organotelúrio. Host do Jovem Pesquisador FAPESP." data-en="Full Professor at IQ-USP; synthetic organic chemistry, routes for LYTAC platforms and organotellurium. FAPESP Young Investigator host.">Professor Titular do IQ-USP; química orgânica sintética, rotas para plataformas LYTAC e organotelúrio. Host do Jovem Pesquisador FAPESP.</p>
+            <p class="proj" data-pt="Química orgânica sintética, com rotas para plataformas LYTAC e organotelúrio. Host do Jovem Pesquisador FAPESP." data-en="Synthetic organic chemistry, with routes for LYTAC platforms and organotellurium. FAPESP Young Investigator host.">Química orgânica sintética, com rotas para plataformas LYTAC e organotelúrio. Host do Jovem Pesquisador FAPESP.</p>
             <div class="stu-badges">
               <a class="stu-badge orcid" href="https://orcid.org/0000-0003-0358-610X" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
@@ -589,6 +608,63 @@
         <div class="sw-logo sw-logo-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#17bebb" stroke-width="2.2"><path d="M6 4 v24 M6 4 h14 l6 6 v18 h-20"/><path d="M20 4 v6 h6"/><path d="M10 16 h8 M10 20 h8 M10 24 h5"/></svg></div>
         <h3 data-pt="Leitor de RMN (API Gemini)" data-en="NMR Reader (Gemini API)">Leitor de RMN (API Gemini)</h3>
         <p data-pt="Assistente que usa a API do Gemini para interpretar e organizar espectros de RMN." data-en="An assistant that uses the Gemini API to interpret and organize NMR spectra.">Assistente que usa a API do Gemini para interpretar e organizar espectros de RMN.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFRATERNIZAÇÕES ============ -->
+<section class="gallery" id="confra">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow" data-pt="Fora do laboratório" data-en="Outside the lab">Fora do laboratório</span>
+        <h2 data-pt="Confraternizações" data-en="Get-togethers">Confraternizações</h2>
+      </div>
+      <p data-pt="Momentos do grupo em ordem cronológica." data-en="Group moments in chronological order.">Momentos do grupo em ordem cronológica.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gitem">
+        <img src="confra/1-primeira-confraternizacao.jpg" alt="Primeira Confraternização LIBNM e LabSSeTe">
+        <div class="cap">
+          <div class="t" data-pt="Primeira confraternização · LIBNM e LabSSeTe" data-en="First get-together · LIBNM and LabSSeTe">Primeira confraternização · LIBNM e LabSSeTe</div>
+          <div class="d" data-pt="Fevereiro de 2026" data-en="February 2026">Fevereiro de 2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/2-churrasco-gian.jpg" alt="Churrasco na casa do Gian Rodrigues">
+        <div class="cap">
+          <div class="t" data-pt="Churrasco na casa do Gian Rodrigues" data-en="BBQ at Gian Rodrigues' place">Churrasco na casa do Gian Rodrigues</div>
+          <div class="d" data-pt="Maio de 2026" data-en="May 2026">Maio de 2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/3-hackathon.jpg" alt="Hackathon LIBNM e LabSSeTe">
+        <div class="cap">
+          <div class="t" data-pt="Hackathon · LIBNM e LabSSeTe" data-en="Hackathon · LIBNM and LabSSeTe">Hackathon · LIBNM e LabSSeTe</div>
+          <div class="d" data-pt="Junho de 2026" data-en="June 2026">Junho de 2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/4-despedida-samuel.jpg" alt="Despedida do Samuel Luiz">
+        <div class="cap">
+          <div class="t" data-pt="Despedida do Samuel Luiz" data-en="Farewell for Samuel Luiz">Despedida do Samuel Luiz</div>
+          <div class="d" data-pt="Junho de 2026" data-en="June 2026">Junho de 2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/5-almoco-shopping.jpg" alt="Almoço no shopping, juntos">
+        <div class="cap">
+          <div class="t" data-pt="Almoço no shopping, juntos" data-en="Lunch together at the mall">Almoço no shopping, juntos</div>
+          <div class="d" data-pt="Julho de 2026" data-en="July 2026">Julho de 2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/6-cha-baby-bento.jpg" alt="Chá do Baby Bento, Glaucio e Mari">
+        <div class="cap">
+          <div class="t" data-pt="Chá do Baby Bento · Glaucio e Mari" data-en="Baby shower for Bento · Glaucio and Mari">Chá do Baby Bento · Glaucio e Mari</div>
+          <div class="d" data-pt="Julho de 2026" data-en="July 2026">Julho de 2026</div>
+        </div>
       </div>
     </div>
   </div>
