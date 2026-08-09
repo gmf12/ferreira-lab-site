@@ -122,6 +122,9 @@
   .about h2{ font-family:var(--font-display); font-weight:700; font-size:clamp(28px,3.4vw,42px); line-height:1.08; color:var(--petrol); margin-top:16px; }
   .about-body p{ font-size:16.5px; color:var(--ink-soft); margin-bottom:16px; }
   .about-body p strong{ color:var(--petrol); font-weight:700; }
+  .about-figure{ margin:6px 0 24px; border:2px solid var(--petrol); border-radius:18px; overflow:hidden; background:#fff; box-shadow:0 5px 0 rgba(0,74,74,0.1); }
+  .about-figure img{ width:100%; display:block; }
+  .about-figure figcaption{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); padding:12px 16px; border-top:1.5px solid var(--line); line-height:1.4; }
   .about-pills{ display:flex; flex-wrap:wrap; gap:9px; margin-top:22px; }
   .pill{ font-family:var(--font-mono); font-size:12px; padding:7px 14px; border:1.5px solid var(--line); border-radius:100px; color:var(--ink-soft); background:#fff; }
 
@@ -182,6 +185,15 @@
   .stu-badge{ display:inline-flex; align-items:center; gap:5px; font-family:var(--font-mono); font-size:10.5px; padding:5px 10px; border-radius:100px; border:1.5px solid var(--line); color:var(--ink-soft); white-space:nowrap; transition:border-color 0.15s, color 0.15s; }
   a.stu-badge:hover{ border-color:var(--teal-bright); color:var(--petrol); }
   .ico-orcid{ width:13px; height:13px; flex-shrink:0; }
+
+  /* ---------- Featured paper ---------- */
+  .destaque{ padding:92px 0; background:var(--mint-wash); }
+  .destaque-card{ display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; background:#fff; border:2.5px solid var(--petrol); border-radius:24px; padding:28px; box-shadow:0 6px 0 rgba(0,74,74,0.1); }
+  .destaque-card img{ width:100%; border-radius:14px; display:block; }
+  .destaque-body h3{ font-family:var(--font-display); font-weight:700; font-size:24px; line-height:1.2; color:var(--petrol); }
+  .destaque-body .meta{ font-family:var(--font-mono); font-size:12px; color:var(--teal); margin-top:10px; }
+  .destaque-body .desc{ font-size:15px; color:var(--ink-soft); margin-top:16px; line-height:1.55; }
+  .destaque-body .btn{ margin-top:22px; }
 
   /* ---------- Publications ---------- */
   .pubs{ padding:92px 0; background:var(--mint-wash); }
@@ -256,6 +268,7 @@
     .stats{ grid-template-columns:repeat(2,1fr); }
     .research-grid{ grid-template-columns:1fr; }
     .software-grid{ grid-template-columns:1fr; }
+    .destaque-card{ grid-template-columns:1fr; }
     .gallery-grid{ grid-template-columns:repeat(2,1fr); }
     .stu-grid{ grid-template-columns:repeat(2,1fr); }
   }
@@ -304,6 +317,7 @@
         <a href="#team" data-pt="Equipe" data-en="Team">Equipe</a>
         <a href="#software" data-pt="Software" data-en="Software">Software</a>
         <a href="#confra" data-pt="Confraternizações" data-en="Get-togethers">Confraternizações</a>
+        <a href="#destaque" data-pt="Artigo em Destaque" data-en="Featured Paper">Artigo em Destaque</a>
         <a href="#pubs" data-pt="Publicações" data-en="Publications">Publicações</a>
         <a href="#contact" data-pt="Contato" data-en="Contact">Contato</a>
       </div>
@@ -356,12 +370,17 @@
     <div class="about-body reveal">
       <p data-pt="O <strong>LIBNM</strong>, Laboratório Integrativo de Bioprospecção de Novas Moléculas, é liderado pelo Prof. Dr. Glaucio Monteiro Ferreira no Instituto de Química da Universidade de São Paulo." data-en="The <strong>LIBNM</strong>, Integrative Laboratory for the Bioprospecting of New Molecules, is led by Prof. Dr. Glaucio Monteiro Ferreira at the Institute of Chemistry, University of São Paulo.">O <strong>LIBNM</strong>, Laboratório Integrativo de Bioprospecção de Novas Moléculas, é liderado pelo Prof. Dr. Glaucio Monteiro Ferreira no Instituto de Química da Universidade de São Paulo.</p>
       <p data-pt="Nosso foco central é a <strong>PCSK9</strong>, protease que controla a reciclagem do receptor de LDL e cujo ganho de função eleva o colesterol plasmático, mecanismo-chave da <strong>hipercolesterolemia familial</strong>. Buscamos alternativas às estatinas (limitadas por efeitos musculares) e aos anticorpos injetáveis de alto custo." data-en="Our core focus is <strong>PCSK9</strong>, a protease that controls LDL-receptor recycling and whose gain of function raises plasma cholesterol, a key mechanism of <strong>familial hypercholesterolemia</strong>. We seek alternatives to statins (limited by muscular side effects) and to costly injectable antibodies.">Nosso foco central é a <strong>PCSK9</strong>, protease que controla a reciclagem do receptor de LDL e cujo ganho de função eleva o colesterol plasmático, mecanismo-chave da <strong>hipercolesterolemia familial</strong>. Buscamos alternativas às estatinas (limitadas por efeitos musculares) e aos anticorpos injetáveis de alto custo.</p>
+      <figure class="about-figure">
+        <img src="pcsk9-mecanismo.png" alt="Mecanismo de ação da PCSK9 na via do receptor de LDL">
+        <figcaption data-pt="Síntese, maturação e via de reciclagem do receptor de LDL (LDLR) e sua degradação mediada pela PCSK9." data-en="Synthesis, maturation and recycling pathway of the LDL receptor (LDLR) and its PCSK9-mediated degradation.">Síntese, maturação e via de reciclagem do receptor de LDL (LDLR) e sua degradação mediada pela PCSK9.</figcaption>
+      </figure>
       <p data-pt="Nossa abordagem é integrativa: da <strong>modelagem e triagem virtual</strong> à <strong>síntese</strong> de moléculas, incluindo plataformas <strong>LYTAC</strong> para degradação direcionada, e à <strong>validação in vitro</strong>, organizadas na plataforma <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform)." data-en="Our approach is integrative: from <strong>modeling and virtual screening</strong> to the <strong>synthesis</strong> of molecules, including <strong>LYTAC</strong> platforms for targeted degradation, and <strong>in vitro validation</strong>, organized within the <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform).">Nossa abordagem é integrativa: da <strong>modelagem e triagem virtual</strong> à <strong>síntese</strong> de moléculas, incluindo plataformas <strong>LYTAC</strong> para degradação direcionada, e à <strong>validação in vitro</strong>, organizadas na plataforma <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform).</p>
       <p data-pt="Glaucio é bacharel em Farmácia pela UFES, doutor em Ciências Farmacêuticas (Química Medicinal) pela USP (2015–2018), com pós-doutorados na FCF-USP, no Instituto Dante Pazzanese de Cardiologia e na Universität Tübingen (Alemanha). Hoje lidera o LIBNM como Pesquisador Associado com bolsa <strong>FAPESP Jovem Pesquisador</strong> (processo 2023/15933-4, 2026–2030)." data-en="Glaucio holds a B.Sc. in Pharmacy from UFES and a Ph.D. in Pharmaceutical Sciences (Medicinal Chemistry) from USP (2015–2018), with postdoctoral work at USP's School of Pharmaceutical Sciences, the Dante Pazzanese Institute of Cardiology, and Universität Tübingen (Germany). He now leads LIBNM as an Associate Researcher under a <strong>FAPESP Young Investigator</strong> award (grant 2023/15933-4, 2026–2030).">Glaucio é bacharel em Farmácia pela UFES, doutor em Ciências Farmacêuticas (Química Medicinal) pela USP (2015–2018), com pós-doutorados na FCF-USP, no Instituto Dante Pazzanese de Cardiologia e na Universität Tübingen (Alemanha). Hoje lidera o LIBNM como Pesquisador Associado com bolsa <strong>FAPESP Jovem Pesquisador</strong> (processo 2023/15933-4, 2026–2030).</p>
       <div class="cv-links">
         <a class="cv-link" href="http://lattes.cnpq.br/7189579305342139" target="_blank" rel="noopener">Currículo Lattes ↗</a>
         <a class="cv-link" href="https://orcid.org/0000-0002-1952-9428" target="_blank" rel="noopener">ORCID ↗</a>
         <a class="cv-link" href="https://bv.fapesp.br/pt/pesquisador/703612/glaucio-monteiro-ferreira/" target="_blank" rel="noopener">FAPESP ↗</a>
+        <a class="cv-link" href="https://github.com/gmf12" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
       <div class="about-pills">
         <span class="pill" data-pt="Inibidores de PCSK9" data-en="PCSK9 inhibitors">Inibidores de PCSK9</span>
@@ -670,6 +689,28 @@
   </div>
 </section>
 
+<!-- ============ ARTIGO EM DESTAQUE ============ -->
+<section class="destaque" id="destaque">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow" data-pt="Da bancada aos dados" data-en="From the bench to the data">Da bancada aos dados</span>
+        <h2 data-pt="Artigo em destaque" data-en="Featured paper">Artigo em destaque</h2>
+      </div>
+      <p data-pt="Um destaque da nossa produção científica." data-en="A highlight from our scientific output.">Um destaque da nossa produção científica.</p>
+    </div>
+    <div class="destaque-card reveal">
+      <img src="destaque-fig2.jpg" alt="Figura 2: análise de componentes principais e conformações do PLpro do SARS-CoV-2">
+      <div class="destaque-body">
+        <h3>Inhibitor induced conformational changes in SARS-CoV-2 papain-like protease</h3>
+        <p class="meta">Ferreira, Pillaiyar, Hirata, Poso, Kronenberger · Scientific Reports (2022)</p>
+        <p class="desc" data-pt="Simulações de dinâmica molecular revelam como diferentes inibidores (GRL-0617, PLP_Snyder530, XR8-89 e CPD7) alteram a conformação da protease PLpro do SARS-CoV-2, incluindo a abertura do BL2-loop e do sítio de ligação S2." data-en="Molecular dynamics simulations reveal how different inhibitors (GRL-0617, PLP_Snyder530, XR8-89 and CPD7) alter the conformation of the SARS-CoV-2 PLpro protease, including opening of the BL2-loop and the S2 binding site.">Simulações de dinâmica molecular revelam como diferentes inibidores (GRL-0617, PLP_Snyder530, XR8-89 e CPD7) alteram a conformação da protease PLpro do SARS-CoV-2, incluindo a abertura do BL2-loop e do sítio de ligação S2.</p>
+        <a class="btn btn-primary" href="https://doi.org/10.1038/s41598-022-15181-y" target="_blank" rel="noopener" data-pt="Ler o artigo →" data-en="Read the paper →">Ler o artigo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PUBLICATIONS ============ -->
 <section class="pubs" id="pubs">
   <div class="wrap">
@@ -771,7 +812,7 @@
         </div>
         <div class="cinfo-row">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5 A2.5 2.5 0 0 1 6.5 17 H20"/><path d="M6.5 2 H20 v20 H6.5 A2.5 2.5 0 0 1 4 19.5 v-15 A2.5 2.5 0 0 1 6.5 2 z"/></svg>
-          <div><div class="k" data-pt="Currículo do PI" data-en="PI's curriculum">Currículo do PI</div><div class="v"><a href="http://lattes.cnpq.br/7189579305342139" target="_blank" rel="noopener">Lattes</a> · <a href="https://orcid.org/0000-0002-1952-9428" target="_blank" rel="noopener">ORCID</a> · <a href="https://bv.fapesp.br/pt/pesquisador/703612/glaucio-monteiro-ferreira/" target="_blank" rel="noopener">FAPESP</a></div></div>
+          <div><div class="k" data-pt="Currículo do PI" data-en="PI's curriculum">Currículo do PI</div><div class="v"><a href="http://lattes.cnpq.br/7189579305342139" target="_blank" rel="noopener">Lattes</a> · <a href="https://orcid.org/0000-0002-1952-9428" target="_blank" rel="noopener">ORCID</a> · <a href="https://bv.fapesp.br/pt/pesquisador/703612/glaucio-monteiro-ferreira/" target="_blank" rel="noopener">FAPESP</a> · <a href="https://github.com/gmf12" target="_blank" rel="noopener">GitHub</a></div></div>
         </div>
       </div>
     </div>
