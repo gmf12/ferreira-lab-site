@@ -5,11 +5,12 @@ Bioprospecção de Novas Moléculas), Instituto de Química — USP.
 
 ## Editar o site
 
-Edite `index.html` diretamente. Para adicionar o ORCID de um(a) aluno(a) na
-seção Equipe, procure o comentário `Para adicionar o ORCID` e troque o
-`href="#"` do link com classe `stu-badge placeholder` pelo link completo do
-ORCID (ex: `https://orcid.org/0000-0000-0000-0000`), removendo a classe
-`placeholder`.
+Edite `index.html` diretamente. A seção Equipe é uma lista de grupos
+(`stu-group`), um por nível (Coordenação, Pós-Doutorado, Doutorado, Mestrado,
+Iniciação Científica), cada um com cards (`stu-card`) no mesmo padrão: foto
+quadrada em `team/`, nome, descrição do projeto e badges de FAPESP/ORCID. Para
+adicionar alguém, copie um `stu-card` existente e ajuste foto, nome, texto e
+links.
 
 ## Rodar localmente
 

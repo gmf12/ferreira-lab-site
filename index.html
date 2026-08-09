@@ -151,13 +151,6 @@
 
   /* ---------- Team ---------- */
   .team{ padding:92px 0; }
-  .team-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:560px; margin:0 auto; }
-  .member-photo{ aspect-ratio:1; border-radius:50%; overflow:hidden; position:relative; border:3px solid var(--petrol); display:flex; align-items:center; justify-content:center; box-shadow:0 5px 0 rgba(0,74,74,0.1); }
-  .member-photo img{ width:100%; height:100%; object-fit:cover; }
-  .member-photo .initials{ font-family:var(--font-display); font-weight:700; font-size:44px; color:#fff; }
-  .member h4{ font-family:var(--font-display); font-weight:600; font-size:18px; color:var(--petrol); margin-top:16px; line-height:1.15; }
-  .member .role{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em; color:var(--teal); text-transform:uppercase; margin-top:4px; }
-  .member .desc{ font-size:13.5px; color:var(--ink-soft); margin-top:8px; }
 
   /* ---------- CV links ---------- */
   .cv-links{ display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
@@ -176,9 +169,9 @@
   .stu-card h5{ font-family:var(--font-display); font-weight:600; font-size:16px; color:var(--petrol); line-height:1.2; }
   .stu-card .proj{ font-size:13px; color:var(--ink-soft); line-height:1.45; flex-grow:1; }
   .stu-badges{ display:flex; flex-wrap:wrap; gap:7px; margin-top:6px; }
-  .stu-badge{ font-family:var(--font-mono); font-size:10.5px; padding:5px 10px; border-radius:100px; border:1.5px solid var(--line); color:var(--ink-soft); white-space:nowrap; transition:border-color 0.15s, color 0.15s; }
+  .stu-badge{ display:inline-flex; align-items:center; gap:5px; font-family:var(--font-mono); font-size:10.5px; padding:5px 10px; border-radius:100px; border:1.5px solid var(--line); color:var(--ink-soft); white-space:nowrap; transition:border-color 0.15s, color 0.15s; }
   a.stu-badge:hover{ border-color:var(--teal-bright); color:var(--petrol); }
-  .stu-badge.placeholder{ border-style:dashed; opacity:0.55; cursor:default; }
+  .ico-orcid{ width:13px; height:13px; flex-shrink:0; }
 
   /* ---------- Publications ---------- */
   .pubs{ padding:92px 0; background:var(--mint-wash); }
@@ -263,7 +256,6 @@
     .stats{ grid-template-columns:1fr 1fr; }
     .pub{ grid-template-columns:56px 1fr; }
     .pub-tag{ display:none; }
-    .team-grid{ grid-template-columns:1fr; max-width:300px; }
     .sec-head{ flex-direction:column; align-items:flex-start; }
     .stu-grid{ grid-template-columns:1fr; }
   }
@@ -275,6 +267,13 @@
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="icon-orcid" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="12" fill="#A6CE39"/>
+    <text x="12" y="16.2" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff">iD</text>
+  </symbol>
+</svg>
 
 <!-- ============ NAV ============ -->
 <header>
@@ -342,9 +341,9 @@
       <h2 data-pt="Do modelo computacional à molécula que importa." data-en="From the computational model to the molecule that matters.">Do modelo computacional à molécula que importa.</h2>
     </div>
     <div class="about-body reveal">
-      <p data-pt="O <strong>LIBNM</strong> — Laboratório Integrativo de Bioprospecção de Novas Moléculas — é liderado pelo Prof. Dr. Glaucio Monteiro Ferreira no Instituto de Química da Universidade de São Paulo." data-en="The <strong>LIBNM</strong> — Integrative Laboratory for the Bioprospecting of New Molecules — is led by Prof. Dr. Glaucio Monteiro Ferreira at the Institute of Chemistry, University of São Paulo.">O <strong>LIBNM</strong> — Laboratório Integrativo de Bioprospecção de Novas Moléculas — é liderado pelo Prof. Dr. Glaucio Monteiro Ferreira no Instituto de Química da Universidade de São Paulo.</p>
-      <p data-pt="Nosso foco central é a <strong>PCSK9</strong>, protease que controla a reciclagem do receptor de LDL e cujo ganho de função eleva o colesterol plasmático — mecanismo-chave da <strong>hipercolesterolemia familial</strong>. Buscamos alternativas às estatinas (limitadas por efeitos musculares) e aos anticorpos injetáveis de alto custo." data-en="Our core focus is <strong>PCSK9</strong>, a protease that controls LDL-receptor recycling and whose gain of function raises plasma cholesterol — a key mechanism of <strong>familial hypercholesterolemia</strong>. We seek alternatives to statins (limited by muscular side effects) and to costly injectable antibodies.">Nosso foco central é a <strong>PCSK9</strong>, protease que controla a reciclagem do receptor de LDL e cujo ganho de função eleva o colesterol plasmático — mecanismo-chave da <strong>hipercolesterolemia familial</strong>. Buscamos alternativas às estatinas (limitadas por efeitos musculares) e aos anticorpos injetáveis de alto custo.</p>
-      <p data-pt="Nossa abordagem é integrativa: da <strong>modelagem e triagem virtual</strong> à <strong>síntese</strong> de moléculas — incluindo plataformas <strong>LYTAC</strong> para degradação direcionada — e à <strong>validação in vitro</strong>, organizadas na plataforma <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform)." data-en="Our approach is integrative: from <strong>modeling and virtual screening</strong> to the <strong>synthesis</strong> of molecules — including <strong>LYTAC</strong> platforms for targeted degradation — and <strong>in vitro validation</strong>, organized within the <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform).">Nossa abordagem é integrativa: da <strong>modelagem e triagem virtual</strong> à <strong>síntese</strong> de moléculas — incluindo plataformas <strong>LYTAC</strong> para degradação direcionada — e à <strong>validação in vitro</strong>, organizadas na plataforma <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform).</p>
+      <p data-pt="O <strong>LIBNM</strong>, Laboratório Integrativo de Bioprospecção de Novas Moléculas, é liderado pelo Prof. Dr. Glaucio Monteiro Ferreira no Instituto de Química da Universidade de São Paulo." data-en="The <strong>LIBNM</strong>, Integrative Laboratory for the Bioprospecting of New Molecules, is led by Prof. Dr. Glaucio Monteiro Ferreira at the Institute of Chemistry, University of São Paulo.">O <strong>LIBNM</strong>, Laboratório Integrativo de Bioprospecção de Novas Moléculas, é liderado pelo Prof. Dr. Glaucio Monteiro Ferreira no Instituto de Química da Universidade de São Paulo.</p>
+      <p data-pt="Nosso foco central é a <strong>PCSK9</strong>, protease que controla a reciclagem do receptor de LDL e cujo ganho de função eleva o colesterol plasmático, mecanismo-chave da <strong>hipercolesterolemia familial</strong>. Buscamos alternativas às estatinas (limitadas por efeitos musculares) e aos anticorpos injetáveis de alto custo." data-en="Our core focus is <strong>PCSK9</strong>, a protease that controls LDL-receptor recycling and whose gain of function raises plasma cholesterol, a key mechanism of <strong>familial hypercholesterolemia</strong>. We seek alternatives to statins (limited by muscular side effects) and to costly injectable antibodies.">Nosso foco central é a <strong>PCSK9</strong>, protease que controla a reciclagem do receptor de LDL e cujo ganho de função eleva o colesterol plasmático, mecanismo-chave da <strong>hipercolesterolemia familial</strong>. Buscamos alternativas às estatinas (limitadas por efeitos musculares) e aos anticorpos injetáveis de alto custo.</p>
+      <p data-pt="Nossa abordagem é integrativa: da <strong>modelagem e triagem virtual</strong> à <strong>síntese</strong> de moléculas, incluindo plataformas <strong>LYTAC</strong> para degradação direcionada, e à <strong>validação in vitro</strong>, organizadas na plataforma <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform)." data-en="Our approach is integrative: from <strong>modeling and virtual screening</strong> to the <strong>synthesis</strong> of molecules, including <strong>LYTAC</strong> platforms for targeted degradation, and <strong>in vitro validation</strong>, organized within the <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform).">Nossa abordagem é integrativa: da <strong>modelagem e triagem virtual</strong> à <strong>síntese</strong> de moléculas, incluindo plataformas <strong>LYTAC</strong> para degradação direcionada, e à <strong>validação in vitro</strong>, organizadas na plataforma <strong>MMDSP</strong> (Molecular Modeling Drug Screening Platform).</p>
       <p data-pt="Glaucio é bacharel em Farmácia pela UFES, doutor em Ciências Farmacêuticas (Química Medicinal) pela USP (2015–2018), com pós-doutorados na FCF-USP, no Instituto Dante Pazzanese de Cardiologia e na Universität Tübingen (Alemanha). Hoje lidera o LIBNM como Pesquisador Associado com bolsa <strong>FAPESP Jovem Pesquisador</strong> (processo 2023/15933-4, 2026–2030)." data-en="Glaucio holds a B.Sc. in Pharmacy from UFES and a Ph.D. in Pharmaceutical Sciences (Medicinal Chemistry) from USP (2015–2018), with postdoctoral work at USP's School of Pharmaceutical Sciences, the Dante Pazzanese Institute of Cardiology, and Universität Tübingen (Germany). He now leads LIBNM as an Associate Researcher under a <strong>FAPESP Young Investigator</strong> award (grant 2023/15933-4, 2026–2030).">Glaucio é bacharel em Farmácia pela UFES, doutor em Ciências Farmacêuticas (Química Medicinal) pela USP (2015–2018), com pós-doutorados na FCF-USP, no Instituto Dante Pazzanese de Cardiologia e na Universität Tübingen (Alemanha). Hoje lidera o LIBNM como Pesquisador Associado com bolsa <strong>FAPESP Jovem Pesquisador</strong> (processo 2023/15933-4, 2026–2030).</p>
       <div class="cv-links">
         <a class="cv-link" href="http://lattes.cnpq.br/7189579305342139" target="_blank" rel="noopener">Currículo Lattes ↗</a>
@@ -396,7 +395,7 @@
         <span class="rcard-num">04</span>
         <div class="rcard-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#2fa0a0" stroke-width="2.2"><path d="M5 24 C5 14 27 18 27 8"/><path d="M5 8 C5 18 27 14 27 24"/><circle cx="5" cy="8" r="2.2"/><circle cx="27" cy="8" r="2.2"/><circle cx="5" cy="24" r="2.2"/><circle cx="27" cy="24" r="2.2"/></svg></div>
         <h3 data-pt="Dinâmica molecular multi-alvo" data-en="Multi-target molecular dynamics">Dinâmica molecular multi-alvo</h3>
-        <p data-pt="Simulações aplicadas a alvos além do metabolismo lipídico — proteases do SARS-CoV-2, CPT1 e Sir2 de <em>T. cruzi</em> — sustentando projetos de CADD." data-en="Simulations applied to targets beyond lipid metabolism — SARS-CoV-2 proteases, CPT1 and <em>T. cruzi</em> Sir2 — supporting CADD projects.">Simulações aplicadas a alvos além do metabolismo lipídico — proteases do SARS-CoV-2, CPT1 e Sir2 de <em>T. cruzi</em> — sustentando projetos de CADD.</p>
+        <p data-pt="Simulações aplicadas a alvos além do metabolismo lipídico (proteases do SARS-CoV-2, CPT1 e Sir2 de <em>T. cruzi</em>), sustentando projetos de CADD." data-en="Simulations applied to targets beyond lipid metabolism (SARS-CoV-2 proteases, CPT1 and <em>T. cruzi</em> Sir2), supporting CADD projects.">Simulações aplicadas a alvos além do metabolismo lipídico (proteases do SARS-CoV-2, CPT1 e Sir2 de <em>T. cruzi</em>), sustentando projetos de CADD.</p>
       </div>
     </div>
   </div>
@@ -412,27 +411,34 @@
       </div>
       <p data-pt="Um grupo que reúne graduandos, mestrandos e doutorandos em torno do planejamento e da validação de novos fármacos." data-en="A group bringing together undergraduates, master's and doctoral students around the design and validation of new drugs.">Um grupo que reúne graduandos, mestrandos e doutorandos em torno do planejamento e da validação de novos fármacos.</p>
     </div>
-    <div class="team-grid reveal">
-      <div class="member">
-        <div class="member-photo"><img src="team/glaucio.jpg" alt="Prof. Dr. Glaucio M. Ferreira"></div>
-        <h4>Prof. Dr. Glaucio M. Ferreira</h4>
-        <div class="role" data-pt="Líder do grupo" data-en="Group leader">Líder do grupo</div>
-        <p class="desc" data-pt="Planejamento de fármacos assistido por computador, modelagem e dinâmica molecular." data-en="Computer-aided drug design, molecular modeling and dynamics.">Planejamento de fármacos assistido por computador, modelagem e dinâmica molecular.</p>
-      </div>
-      <div class="member">
-        <div class="member-photo"><img src="team/alcindo.jpg" alt="Prof. Dr. Alcindo A. dos Santos"></div>
-        <h4>Prof. Dr. Alcindo A. dos Santos</h4>
-        <div class="role" data-pt="Host do Jovem Pesquisador FAPESP · Síntese" data-en="FAPESP Young Investigator host · Synthesis">Host do Jovem Pesquisador FAPESP · Síntese</div>
-        <p class="desc" data-pt="Professor Titular do IQ-USP; química orgânica sintética, rotas para plataformas LYTAC e organotelúrio." data-en="Full Professor at IQ-USP; synthetic organic chemistry, routes for LYTAC platforms and organotellurium.">Professor Titular do IQ-USP; química orgânica sintética, rotas para plataformas LYTAC e organotelúrio.</p>
-      </div>
-    </div>
-
-    <!--
-      Para adicionar o ORCID de um(a) aluno(a): troque o href="#" do link com
-      class="stu-badge placeholder" pelo endereço completo, ex:
-      href="https://orcid.org/0000-0000-0000-0000", e remova a classe "placeholder".
-    -->
     <div class="stu-groups reveal">
+
+      <div class="stu-group">
+        <div class="stu-group-label" data-pt="Coordenação" data-en="Coordination">Coordenação</div>
+        <div class="stu-grid">
+          <div class="stu-card">
+            <div class="stu-head">
+              <div class="stu-photo"><img src="team/glaucio.jpg" alt="Prof. Dr. Glaucio M. Ferreira"></div>
+              <h5>Prof. Dr. Glaucio M. Ferreira</h5>
+            </div>
+            <p class="proj" data-pt="Química Medicinal aplicada ao desenvolvimento de fármacos, unindo modelagem computacional e síntese orgânica. Líder do grupo." data-en="Medicinal Chemistry applied to drug development, combining computational modeling and organic synthesis. Group leader.">Química Medicinal aplicada ao desenvolvimento de fármacos, unindo modelagem computacional e síntese orgânica. Líder do grupo.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/auxilios/119151/plataforma-de-triagem-de-medicamentos-por-modelagem-molecular-mmdsp-um-modelo-de-insights-pre-clinic/" target="_blank" rel="noopener">FAPESP 2023/15933-4</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0000-0002-1952-9428" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
+            </div>
+          </div>
+          <div class="stu-card">
+            <div class="stu-head">
+              <div class="stu-photo"><img src="team/alcindo.jpg" alt="Prof. Dr. Alcindo A. dos Santos"></div>
+              <h5>Prof. Dr. Alcindo A. dos Santos</h5>
+            </div>
+            <p class="proj" data-pt="Professor Titular do IQ-USP; química orgânica sintética, rotas para plataformas LYTAC e organotelúrio. Host do Jovem Pesquisador FAPESP." data-en="Full Professor at IQ-USP; synthetic organic chemistry, routes for LYTAC platforms and organotellurium. FAPESP Young Investigator host.">Professor Titular do IQ-USP; química orgânica sintética, rotas para plataformas LYTAC e organotelúrio. Host do Jovem Pesquisador FAPESP.</p>
+            <div class="stu-badges">
+              <a class="stu-badge orcid" href="https://orcid.org/0000-0003-0358-610X" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="stu-group">
         <div class="stu-group-label" data-pt="Pós-Doutorado" data-en="Postdoctoral">Pós-Doutorado</div>
@@ -445,7 +451,7 @@
             <p class="proj" data-pt="Avaliação funcional e transcriptômica de derivados feniletilamina direcionados à PCSK9 para o tratamento de doenças cardiovasculares." data-en="Functional and transcriptomic evaluation of phenethylamine derivatives targeting PCSK9 for the treatment of cardiovascular diseases.">Avaliação funcional e transcriptômica de derivados feniletilamina direcionados à PCSK9 para o tratamento de doenças cardiovasculares.</p>
             <div class="stu-badges">
               <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F19269-0%22" target="_blank" rel="noopener">FAPESP 2026/19269-0</a>
-              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0000-0002-2266-9771" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
         </div>
@@ -462,7 +468,7 @@
             <p class="proj" data-pt="Avaliação estrutural experimental de sondas químicas para validação do sítio de ligação catalítico." data-en="Experimental structural evaluation of chemical probes for catalytic binding-site validation.">Avaliação estrutural experimental de sondas químicas para validação do sítio de ligação catalítico.</p>
             <div class="stu-badges">
               <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F01605-3%22" target="_blank" rel="noopener">FAPESP 2026/01605-3</a>
-              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0009-0005-5922-7087" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
           <div class="stu-card">
@@ -473,7 +479,7 @@
             <p class="proj" data-pt="Avaliação in vitro de atividade, farmacocinética e toxicidade de inibidores de PCSK9." data-en="In vitro evaluation of activity, pharmacokinetics and toxicity of PCSK9 inhibitors.">Avaliação in vitro de atividade, farmacocinética e toxicidade de inibidores de PCSK9.</p>
             <div class="stu-badges">
               <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F19256-5%22" target="_blank" rel="noopener">FAPESP 2026/19256-5</a>
-              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0009-0002-3815-7065" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
           <div class="stu-card">
@@ -484,7 +490,7 @@
             <p class="proj" data-pt="Through the lens of proteasomal degradation: PROTAC bifuncional como nova oportunidade terapêutica para inibição da PCSK9 e homeostase do colesterol." data-en="Through the lens of proteasomal degradation: a bifunctional PROTAC as a new therapeutic opportunity for PCSK9 inhibition and cholesterol homeostasis.">Through the lens of proteasomal degradation: PROTAC bifuncional como nova oportunidade terapêutica para inibição da PCSK9 e homeostase do colesterol.</p>
             <div class="stu-badges">
               <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F19255-9%22" target="_blank" rel="noopener">FAPESP 2026/19255-9</a>
-              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0009-0003-7748-8390" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
         </div>
@@ -501,7 +507,7 @@
             <p class="proj" data-pt="Plataformas LYTAC para degradação de PCSK9 via ASGPR: síntese de tioglicosídeos via sais de Bunte, variabilidade de linkers e inibidores da PCSK9." data-en="LYTAC platforms for PCSK9 degradation via ASGPR: synthesis of thioglycosides via Bunte salts, linker variability and PCSK9 inhibitors.">Plataformas LYTAC para degradação de PCSK9 via ASGPR: síntese de tioglicosídeos via sais de Bunte, variabilidade de linkers e inibidores da PCSK9.</p>
             <div class="stu-badges">
               <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F18593-8%22" target="_blank" rel="noopener">FAPESP 2026/18593-8</a>
-              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0009-0008-6646-1922" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
         </div>
@@ -518,7 +524,7 @@
             <p class="proj" data-pt="Desvendando o impacto da Hipercolesterolemia Familiar através da modelagem computacional avançada da Apolipoproteína B100 e suas variantes." data-en="Unraveling the impact of Familial Hypercholesterolemia through advanced computational modeling of Apolipoprotein B100 and its variants.">Desvendando o impacto da Hipercolesterolemia Familiar através da modelagem computacional avançada da Apolipoproteína B100 e suas variantes.</p>
             <div class="stu-badges">
               <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F08559-7%22" target="_blank" rel="noopener">FAPESP 2026/08559-7</a>
-              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0009-0008-9798-7994" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
           <div class="stu-card">
@@ -529,7 +535,7 @@
             <p class="proj" data-pt="Síntese da N-{2-[3,5-bis(butiltelanil)fenil]etil}acetamida via acetilação e substituição nucleofílica aromática com reagente de Grignard organotelurídico." data-en="Synthesis of N-{2-[3,5-bis(butyltellanyl)phenyl]ethyl}acetamide via acetylation and aromatic nucleophilic substitution with an organotellurium Grignard reagent.">Síntese da N-{2-[3,5-bis(butiltelanil)fenil]etil}acetamida via acetilação e substituição nucleofílica aromática com reagente de Grignard organotelurídico.</p>
             <div class="stu-badges">
               <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F08028-1%22" target="_blank" rel="noopener">FAPESP 2026/08028-1</a>
-              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0009-0002-1228-367X" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
           <div class="stu-card">
@@ -540,7 +546,7 @@
             <p class="proj" data-pt="Avaliação da captação de LDL por potenciais inibidores da PCSK9." data-en="Evaluation of LDL uptake by potential PCSK9 inhibitors.">Avaliação da captação de LDL por potenciais inibidores da PCSK9.</p>
             <div class="stu-badges">
               <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F01242-8%22" target="_blank" rel="noopener">FAPESP 2026/01242-8</a>
-              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0009-0005-4254-1870" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
           <div class="stu-card">
@@ -550,8 +556,8 @@
             </div>
             <p class="proj" data-pt="Síntese de tioglicosídeos via sais de Bunte: rota modular para plataformas de degradação proteica direcionada de alvos intracelulares." data-en="Synthesis of thioglycosides via Bunte salts: a modular route for targeted protein-degradation platforms of intracellular targets.">Síntese de tioglicosídeos via sais de Bunte: rota modular para plataformas de degradação proteica direcionada de alvos intracelulares.</p>
             <div class="stu-badges">
-              <span class="stu-badge placeholder" title="Adicionar processo FAPESP">FAPESP</span>
-              <a class="stu-badge placeholder" href="#" title="Adicionar ORCID">ORCID</a>
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F19922-5%22" target="_blank" rel="noopener">FAPESP 2026/19922-5</a>
+              <a class="stu-badge orcid" href="https://orcid.org/0009-0008-5329-2445" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
         </div>
