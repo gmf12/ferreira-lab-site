@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
   :root{
     /* Palette lifted directly from the LIBNM mascot */
@@ -253,49 +253,77 @@
   .joinus p{ font-size:16px; color:var(--ink-soft); max-width:46ch; margin-top:16px; }
   .joinus .btn{ margin-top:26px; }
 
-  /* ---------- Coffee counter (70s LED counter) ---------- */
-  .coffee-counter{
-    --coffee-1:#e8a33d; --coffee-2:#c1440e; --coffee-brown:#3d2314; --coffee-led:#ffb020; --coffee-cream:#f6e3c1;
-    position:relative; padding:52px 0 58px; overflow:hidden;
-    background:linear-gradient(160deg, var(--coffee-1), var(--coffee-2));
-    color:var(--coffee-cream); text-align:center;
+  /* ---------- Coffee scene (8-bit level strip, jumping cup hits brick) ---------- */
+  .coffee-scene{ padding:92px 0; background:var(--cream-2); }
+  .scene-frame{
+    position:relative; max-width:480px; aspect-ratio:3/2; margin:0 auto;
+    border:2.5px solid var(--petrol); border-radius:20px; overflow:hidden;
+    box-shadow:0 6px 0 rgba(0,74,74,0.1); background:#b7b2ef;
   }
-  .coffee-wave{ position:absolute; top:-1px; left:0; width:100%; line-height:0; }
-  .coffee-wave svg{ display:block; width:100%; height:40px; }
-  .coffee-sunburst{
-    position:absolute; top:50%; left:50%; width:560px; height:560px; margin:-280px 0 0 -280px;
-    background:repeating-conic-gradient(rgba(246,227,193,0.07) 0deg 6deg, transparent 6deg 12deg);
-    border-radius:50%; animation:coffee-spin 90s linear infinite; pointer-events:none;
+  .scene-hud{
+    position:absolute; top:12px; left:14px; z-index:5; display:flex; align-items:center; gap:5px;
+    font-family:'Press Start 2P', var(--font-mono), monospace; font-size:13px; color:#fff;
+    text-shadow:2px 0 #3d2314, -2px 0 #3d2314, 0 2px #3d2314, 0 -2px #3d2314;
   }
-  @keyframes coffee-spin{ to{ transform:rotate(360deg); } }
-  .coffee-counter .wrap{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; }
-  .coffee-counter .eyebrow{ color:var(--coffee-brown); }
-  .coffee-counter .eyebrow::before{ background:var(--coffee-brown); }
-  .coffee-counter h2{ font-family:var(--font-display); font-weight:700; font-size:clamp(19px,2.4vw,26px); color:var(--coffee-brown); margin-top:10px; text-shadow:2px 2px 0 rgba(246,227,193,0.35); }
-  .coffee-counter .sub{ font-size:12.5px; color:var(--coffee-brown); opacity:0.85; max-width:46ch; margin-top:8px; }
-
-  .coffee-panel{
-    margin-top:20px; background:var(--coffee-brown); border-radius:16px; padding:14px 22px;
-    border:3px solid var(--coffee-1); box-shadow:0 6px 0 rgba(0,0,0,0.2), inset 0 0 18px rgba(0,0,0,0.5);
+  .scene-hud .hud-x{ opacity:0.8; }
+  .scene-mountain{
+    position:absolute; right:6%; bottom:13%; width:36%; height:50%;
+    background:#4a8f3c; clip-path:polygon(50% 0%, 100% 100%, 0% 100%);
+    filter:drop-shadow(1.5px 0 0 #1c4a17) drop-shadow(-1.5px 0 0 #1c4a17) drop-shadow(0 1.5px 0 #1c4a17) drop-shadow(0 -1.5px 0 #1c4a17);
   }
-  .coffee-label{ font-family:var(--font-mono); font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(246,227,193,0.5); }
-  .coffee-led{
-    font-family:var(--font-mono); font-weight:500; font-variant-numeric:tabular-nums;
-    font-size:clamp(22px,3.6vw,38px); color:var(--coffee-led); letter-spacing:0.02em;
-    text-shadow:0 0 6px rgba(255,176,32,0.75), 0 0 14px rgba(255,176,32,0.45);
-    animation:coffee-flicker 3.4s ease-in-out infinite;
+  .scene-mountain::before, .scene-mountain::after{ content:""; position:absolute; width:7%; height:7%; background:#1c4a17; }
+  .scene-mountain::before{ top:52%; left:30%; }
+  .scene-mountain::after{ top:68%; left:56%; }
+  .scene-bush{ position:absolute; left:5%; bottom:13%; width:30%; height:20%; }
+  .scene-bush i{
+    position:absolute; bottom:0; border-radius:50%; background:#5fb84e;
+    filter:drop-shadow(1.5px 0 0 #1c4a17) drop-shadow(-1.5px 0 0 #1c4a17) drop-shadow(0 1.5px 0 #1c4a17) drop-shadow(0 -1.5px 0 #1c4a17);
   }
-  .coffee-led .unit{ font-size:0.35em; margin-left:6px; opacity:0.8; }
-  @keyframes coffee-flicker{ 0%,100%{ opacity:1; } 92%{ opacity:1; } 94%{ opacity:0.85; } 96%{ opacity:1; } }
-
-  .coffee-stats{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:14px; }
-  .coffee-stat{
-    font-family:var(--font-mono); font-size:11px; color:var(--coffee-brown); background:rgba(246,227,193,0.55);
-    border:1.5px solid var(--coffee-brown); border-radius:100px; padding:6px 14px; display:inline-flex; align-items:center; gap:6px; font-weight:600;
+  .scene-bush i:nth-child(1){ left:0; width:55%; height:75%; }
+  .scene-bush i:nth-child(2){ left:30%; width:65%; height:100%; }
+  .scene-bush i:nth-child(3){ left:62%; width:50%; height:70%; }
+  .scene-ground{
+    position:absolute; left:0; bottom:0; width:100%; height:13%;
+    background:#c1440e; border-top:3px solid #3d2314;
+    background-image:
+      repeating-linear-gradient(90deg, transparent 0 calc(100%/9 - 3px), #3d2314 calc(100%/9 - 3px) calc(100%/9)),
+      linear-gradient(#a83a0c 0 40%, transparent 40%);
   }
-  .coffee-stat b{ font-family:var(--font-display); font-size:12.5px; }
-  .coffee-since{ font-family:var(--font-mono); font-size:10px; color:var(--coffee-brown); opacity:0.7; margin-top:14px; letter-spacing:0.04em; }
-  @media (max-width:640px){ .coffee-panel{ padding:12px 16px; } }
+  .hud-brick{
+    position:absolute; left:50%; bottom:38%; width:15%; aspect-ratio:8/5; transform:translateX(-50%);
+    image-rendering:pixelated; animation:hud-brick-bump 1.7s ease-in-out infinite;
+  }
+  .hud-scientist{
+    position:absolute; left:50%; bottom:13%; width:11%; aspect-ratio:8/10; transform:translateX(-50%);
+    image-rendering:pixelated; animation:hud-bounce 1.7s ease-in-out infinite;
+  }
+  .hud-coin{
+    position:absolute; left:50%; bottom:52%; width:9%; aspect-ratio:1; transform:translateX(-50%) translateY(0) scale(0.6);
+    image-rendering:pixelated; opacity:0; pointer-events:none; animation:hud-coin-pop 1.7s ease-in-out infinite;
+  }
+  @keyframes hud-bounce{
+    0%,100%{ transform:translateX(-50%) translateY(0) scaleY(1); }
+    32%{ transform:translateX(-50%) translateY(-42%) scaleY(1); }
+    40%{ transform:translateX(-50%) translateY(-52%) scaleY(0.92); }
+    48%{ transform:translateX(-50%) translateY(-42%) scaleY(1.06); }
+    62%{ transform:translateX(-50%) translateY(0) scaleY(0.9); }
+    70%{ transform:translateX(-50%) translateY(-4%) scaleY(1.02); }
+    80%,100%{ transform:translateX(-50%) translateY(0) scaleY(1); }
+  }
+  @keyframes hud-brick-bump{
+    0%,36%,100%{ transform:translateX(-50%) translateY(0); }
+    40%{ transform:translateX(-50%) translateY(-15%); }
+    46%{ transform:translateX(-50%) translateY(0); }
+  }
+  @keyframes hud-coin-pop{
+    0%,34%,100%{ opacity:0; transform:translateX(-50%) translateY(0) scale(0.6); }
+    38%{ opacity:1; transform:translateX(-50%) translateY(-5%) scale(1); }
+    55%{ opacity:1; transform:translateX(-50%) translateY(-90%) scale(1); }
+    66%,100%{ opacity:0; transform:translateX(-50%) translateY(-130%) scale(0.8); }
+  }
+  @media (max-width:640px){
+    .scene-hud{ font-size:10px; top:9px; left:10px; }
+  }
 
   /* ---------- Footer ---------- */
   footer{ background:var(--ink); color:rgba(245,242,234,0.6); padding:36px 0; }
@@ -937,26 +965,65 @@
   </div>
 </section>
 
-<!-- ============ COFFEE COUNTER ============ -->
-<section class="coffee-counter" id="cafe">
-  <div class="coffee-wave" aria-hidden="true">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="#e8f5f0" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,32 L1440,0 L0,0 Z"/></svg>
-  </div>
-  <div class="coffee-sunburst" aria-hidden="true"></div>
+<!-- ============ COFFEE SCENE (8-bit level strip, original pixel scientist jumping for a coffee coin) ============ -->
+<section class="coffee-scene" id="cafe">
   <div class="wrap">
-    <span class="eyebrow" data-pt="Combustível do laboratório" data-en="Lab fuel">Combustível do laboratório</span>
-    <h2 data-pt="☕ O contador de café do LIBNM" data-en="☕ The LIBNM coffee counter">☕ O contador de café do LIBNM</h2>
-    <p class="sub" data-pt="4 garrafas por dia útil (seg-sex), 75 ml de cada vez — a contagem roda desde 1º de março de 2026, pausando nos fins de semana." data-en="4 pots per weekday (Mon-Fri), 75 ml at a time — counting since March 1st, 2026, pausing on weekends.">4 garrafas por dia útil (seg-sex), 75 ml de cada vez — a contagem roda desde 1º de março de 2026, pausando nos fins de semana.</p>
-
-    <div class="coffee-panel">
-      <div class="coffee-label" data-pt="Litros de café consumidos" data-en="Liters of coffee consumed">Litros de café consumidos</div>
-      <div class="coffee-led" id="coffee-liters">0,000<span class="unit">L</span></div>
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow" data-pt="Nosso combustível" data-en="Our fuel">Nosso combustível</span>
+        <h2 data-pt="☕ Contagem de cafés do lab" data-en="☕ Lab coffee count">☕ Contagem de cafés do lab</h2>
+      </div>
+      <p data-pt="4 garrafas de 750 ml por dia útil (seg-sex), uma xícara de 75 ml por vez — contando sem parar desde 1º de março de 2026." data-en="4 pots of 750 ml per weekday (Mon-Fri), a 75 ml cup at a time — counting non-stop since March 1st, 2026.">4 garrafas de 750 ml por dia útil (seg-sex), uma xícara de 75 ml por vez — contando sem parar desde 1º de março de 2026.</p>
     </div>
-
-    <div class="coffee-stats">
-      <div class="coffee-stat">☕ <b id="coffee-garrafas">0</b> <span data-pt="garrafas de café preparadas" data-en="pots of coffee brewed">garrafas de café preparadas</span></div>
+    <div class="scene-frame reveal" title="4 garrafas de 750 ml preparadas por dia útil (seg-sex) desde 01/03/2026 — cada aluno toma uma xícara de 75 ml por garrafa.">
+      <div class="scene-hud">☕ <span class="hud-x">×</span><span id="coffee-garrafas">0000</span></div>
+      <div class="scene-mountain"></div>
+      <div class="scene-bush"><i></i><i></i><i></i></div>
+      <svg class="hud-brick" viewBox="0 0 8 5" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="0" y="0" width="8" height="5" fill="#c1440e"/>
+        <rect x="0" y="0" width="8" height="1" fill="#3d2314"/>
+        <rect x="0" y="2" width="8" height="1" fill="#3d2314"/>
+        <rect x="3" y="0" width="1" height="2" fill="#3d2314"/>
+        <rect x="0" y="3" width="1" height="2" fill="#3d2314"/>
+        <rect x="7" y="3" width="1" height="2" fill="#3d2314"/>
+        <rect x="4" y="3" width="1" height="2" fill="#3d2314"/>
+        <rect x="0" y="4" width="8" height="1" fill="#3d2314"/>
+      </svg>
+      <svg class="hud-scientist" viewBox="0 0 8 10" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="3" y="0" width="2" height="1" fill="#17bebb"/>
+        <rect x="2" y="1" width="4" height="1" fill="#17bebb"/>
+        <rect x="2" y="2" width="4" height="1" fill="#e8b98a"/>
+        <rect x="6" y="1" width="1" height="2" fill="#e8b98a"/>
+        <rect x="2" y="3" width="4" height="1" fill="#f6e3c1"/>
+        <rect x="1" y="4" width="6" height="1" fill="#f6e3c1"/>
+        <rect x="3" y="4" width="1" height="1" fill="#17bebb"/>
+        <rect x="1" y="5" width="6" height="1" fill="#f6e3c1"/>
+        <rect x="3" y="5" width="1" height="1" fill="#17bebb"/>
+        <rect x="2" y="6" width="2" height="1" fill="#2fa0a0"/>
+        <rect x="5" y="6" width="2" height="1" fill="#2fa0a0"/>
+        <rect x="2" y="7" width="2" height="1" fill="#3d2314"/>
+        <rect x="5" y="7" width="2" height="1" fill="#2fa0a0"/>
+        <rect x="5" y="8" width="2" height="1" fill="#2fa0a0"/>
+        <rect x="5" y="9" width="2" height="1" fill="#3d2314"/>
+      </svg>
+      <svg class="hud-coin" viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true">
+          <rect x="2" y="0" width="1" height="1" fill="#f6e3c1" opacity="0.65"/>
+          <rect x="5" y="0" width="1" height="1" fill="#f6e3c1" opacity="0.65"/>
+          <rect x="3" y="1" width="1" height="1" fill="#f6e3c1" opacity="0.65"/>
+          <rect x="1" y="3" width="6" height="1" fill="#f6e3c1"/>
+          <rect x="1" y="4" width="1" height="1" fill="#f6e3c1"/>
+          <rect x="6" y="4" width="1" height="1" fill="#f6e3c1"/>
+          <rect x="2" y="4" width="4" height="1" fill="#ffb020"/>
+          <rect x="1" y="5" width="1" height="1" fill="#f6e3c1"/>
+          <rect x="6" y="5" width="1" height="1" fill="#f6e3c1"/>
+          <rect x="2" y="5" width="4" height="1" fill="#ffb020"/>
+          <rect x="1" y="6" width="1" height="1" fill="#f6e3c1"/>
+          <rect x="6" y="6" width="1" height="1" fill="#f6e3c1"/>
+          <rect x="2" y="6" width="4" height="1" fill="#ffb020"/>
+        <rect x="1" y="7" width="6" height="1" fill="#f6e3c1"/>
+      </svg>
+      <div class="scene-ground"></div>
     </div>
-    <div class="coffee-since" data-pt="Contando desde 01/03/2026 · atualizado em tempo real" data-en="Counting since 03/01/2026 · updated in real time">Contando desde 01/03/2026 · atualizado em tempo real</div>
   </div>
 </section>
 
@@ -1012,11 +1079,10 @@
     return false;
   }
 
-  /* ---- Coffee counter (since March 2026, 4 pots/weekday x 75ml, paused on weekends) ---- */
+  /* ---- Coffee HUD (since March 2026, 4 pots of 750ml/weekday, paused on weekends) ---- */
   (function(){
     const START = new Date('2026-03-01T00:00:00-03:00');
-    const GARRAFAS_PER_DAY = 4;
-    const ML_PER_DAY = GARRAFAS_PER_DAY * 75;
+    const GARRAFAS_PER_DAY = 4; // 750ml pots brewed per weekday
     const DAY_MS = 86400000;
     const startDow = START.getUTCDay(); // 0=Sun..6=Sat (START is local BR midnight, same UTC calendar date)
     const isWeekday = dow => dow >= 1 && dow <= 5;
@@ -1032,19 +1098,15 @@
       const currentDow = (startDow + fullDays) % 7;
       return weekdayCount + (isWeekday(currentDow) ? remainderFraction : 0);
     }
-    const litersEl = document.getElementById('coffee-liters');
     const garrafasEl = document.getElementById('coffee-garrafas');
-    if(!litersEl || !garrafasEl) return;
+    if(!garrafasEl) return;
     function tick(){
       const days = businessDaysElapsed(Date.now());
-      const liters = (days * ML_PER_DAY) / 1000;
       const garrafas = Math.floor(days * GARRAFAS_PER_DAY);
-      const lang = document.documentElement.lang === 'en' ? 'en-US' : 'pt-BR';
-      litersEl.firstChild.textContent = liters.toLocaleString(lang, {minimumFractionDigits:3, maximumFractionDigits:3});
-      garrafasEl.textContent = garrafas.toLocaleString(lang);
+      garrafasEl.textContent = String(garrafas).padStart(4, '0');
     }
     tick();
-    setInterval(tick, 120);
+    setInterval(tick, 30000);
   })();
 
   /* ---- Scroll reveal ---- */
