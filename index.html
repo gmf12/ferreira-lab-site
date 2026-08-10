@@ -161,6 +161,14 @@
   .swcard h3{ font-family:var(--font-display); font-weight:700; font-size:22px; line-height:1.12; color:var(--petrol); margin-bottom:10px; }
   .swcard p{ font-size:15px; color:var(--ink-soft); }
 
+  .software-sub{ margin-top:44px; padding-top:36px; border-top:2px solid var(--line); }
+  .software-edu-grid{ display:grid; grid-template-columns:minmax(0,480px); }
+  .software-sub-label{ font-family:var(--font-mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--teal); margin-bottom:18px; padding-bottom:8px; border-bottom:1.5px solid var(--line); font-weight:500; }
+  .sw-status.sw-status-live{ background:var(--teal-bright); color:#fff; }
+  a.swcard.edu-card{ cursor:pointer; text-decoration:none; }
+  a.swcard.edu-card:hover{ transform:translateY(-4px); box-shadow:0 10px 0 rgba(0,74,74,0.12); }
+  .edu-cta{ margin-top:16px; font-weight:700; color:var(--petrol); display:inline-flex; align-items:center; gap:6px; }
+
   /* ---------- Team ---------- */
   .team{ padding:92px 0; }
 
@@ -682,6 +690,19 @@
         <div class="sw-logo sw-logo-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#17bebb" stroke-width="2.2"><path d="M6 4 v24 M6 4 h14 l6 6 v18 h-20"/><path d="M20 4 v6 h6"/><path d="M10 16 h8 M10 20 h8 M10 24 h5"/></svg></div>
         <h3 data-pt="Leitor de RMN (API Gemini)" data-en="NMR Reader (Gemini API)">Leitor de RMN (API Gemini)</h3>
         <p data-pt="Assistente que usa a API do Gemini para interpretar e organizar espectros de RMN." data-en="An assistant that uses the Gemini API to interpret and organize NMR spectra.">Assistente que usa a API do Gemini para interpretar e organizar espectros de RMN.</p>
+      </div>
+    </div>
+
+    <div class="software-sub reveal">
+      <div class="software-sub-label" data-pt="Material educativo" data-en="Educational material">Material educativo</div>
+      <div class="software-edu-grid">
+        <a class="swcard edu-card" href="guia-interativo-dinamica-molecular.html" target="_blank" rel="noopener">
+          <span class="sw-status sw-status-live" data-pt="Disponível" data-en="Available">Disponível</span>
+          <div class="sw-logo sw-logo-ico"><svg viewBox="0 0 32 32" fill="none" stroke="#2fa0a0" stroke-width="2.2"><path d="M5 24 C5 14 27 18 27 8"/><path d="M5 8 C5 18 27 14 27 24"/><circle cx="5" cy="8" r="2.2"/><circle cx="27" cy="8" r="2.2"/><circle cx="5" cy="24" r="2.2"/><circle cx="27" cy="24" r="2.2"/></svg></div>
+          <h3 data-pt="Guia Interativo de Dinâmica Molecular" data-en="Interactive Molecular Dynamics Guide">Guia Interativo de Dinâmica Molecular</h3>
+          <p data-pt="Um material visual e interativo para entender, passo a passo, o processo de simulação de dinâmica molecular — uma das técnicas centrais do LIBNM." data-en="A visual, interactive resource explaining step by step how molecular dynamics simulation works — one of LIBNM's core techniques.">Um material visual e interativo para entender, passo a passo, o processo de simulação de dinâmica molecular — uma das técnicas centrais do LIBNM.</p>
+          <span class="edu-cta" data-pt="Abrir guia →" data-en="Open guide →">Abrir guia →</span>
+        </a>
       </div>
     </div>
   </div>
