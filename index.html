@@ -72,6 +72,12 @@
   .nav-links a::after{ content:""; position:absolute; left:0; bottom:-6px; width:0; height:2.5px; background:var(--teal-bright); border-radius:2px; transition:width 0.25s ease; }
   .nav-links a:hover{ color:var(--petrol); }
   .nav-links a:hover::after{ width:100%; }
+  .nav-links a.active{ color:var(--petrol); }
+  .nav-links a.active::after{ width:100%; }
+
+  /* ---- Tabs: only the active section is shown, no scrolling past others ---- */
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; }
 
   .lang-toggle{ display:flex; border:2px solid var(--petrol); border-radius:100px; overflow:hidden; font-family:var(--font-mono); font-size:12px; font-weight:500; }
   .lang-toggle button{ background:transparent; border:none; cursor:pointer; padding:5px 12px; color:var(--ink-soft); transition:background 0.2s, color 0.2s; }
@@ -413,7 +419,7 @@
 </header>
 
 <!-- ============ HERO ============ -->
-<section class="hero" id="top">
+<section class="hero tab-panel active" id="top" data-tab="top">
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
@@ -441,7 +447,7 @@
 </section>
 
 <!-- ============ ABOUT ============ -->
-<section class="about" id="about">
+<section class="about tab-panel" id="about" data-tab="about">
   <div class="wrap">
     <div class="about-side reveal">
       <span class="eyebrow" data-pt="Sobre o laboratório" data-en="About the lab">Sobre o laboratório</span>
@@ -475,7 +481,7 @@
 </section>
 
 <!-- ============ RESEARCH ============ -->
-<section class="research" id="research">
+<section class="research tab-panel" id="research" data-tab="research">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
@@ -514,7 +520,7 @@
 </section>
 
 <!-- ============ TEAM ============ -->
-<section class="team" id="team">
+<section class="team tab-panel" id="team" data-tab="team">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
@@ -697,7 +703,7 @@
 </section>
 
 <!-- ============ SOFTWARE ============ -->
-<section class="software" id="software">
+<section class="software tab-panel" id="software" data-tab="software">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
@@ -737,7 +743,7 @@
 </section>
 
 <!-- ============ CONFRATERNIZAÇÕES ============ -->
-<section class="gallery" id="confra">
+<section class="gallery tab-panel" id="confra" data-tab="confra">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
@@ -808,7 +814,7 @@
 </section>
 
 <!-- ============ ARTIGO EM DESTAQUE ============ -->
-<section class="destaque" id="destaque">
+<section class="destaque tab-panel" id="destaque" data-tab="destaque">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
@@ -830,7 +836,7 @@
 </section>
 
 <!-- ============ PUBLICATIONS ============ -->
-<section class="pubs" id="pubs">
+<section class="pubs tab-panel" id="pubs" data-tab="pubs">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
@@ -910,7 +916,7 @@
 </section>
 
 <!-- ============ CONTACT ============ -->
-<section class="contact" id="contact">
+<section class="contact tab-panel" id="contact" data-tab="contact">
   <div class="wrap">
     <div class="contact-left reveal">
       <span class="eyebrow" data-pt="Fale com o LIBNM" data-en="Get in touch">Fale com o LIBNM</span>
@@ -1128,6 +1134,38 @@
     entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- Tabs: nav links (and any #hash link) switch panels instead of scrolling the long page ---- */
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  function activateTab(tab, opts){
+    opts = opts || {};
+    let found = false;
+    tabPanels.forEach(panel => {
+      const isActive = panel.dataset.tab === tab;
+      if(isActive) found = true;
+      panel.classList.toggle('active', isActive);
+      if(isActive) panel.querySelectorAll('.reveal').forEach(el => { io.unobserve(el); el.classList.add('in'); });
+    });
+    if(!found) return false;
+    document.querySelectorAll('a[data-tab]').forEach(a => a.classList.toggle('active', a.dataset.tab === tab));
+    if(opts.scroll !== false) window.scrollTo(0, 0);
+    if(opts.updateHash !== false) history.replaceState(null, '', '#' + tab);
+    return true;
+  }
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => a.dataset.tab = a.getAttribute('href').slice(1));
+  document.querySelectorAll('.brand[href^="#"]').forEach(a => a.dataset.tab = a.getAttribute('href').slice(1));
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const tab = a.getAttribute('href').slice(1);
+    if(activateTab(tab)) e.preventDefault();
+  });
+  const startTab = (location.hash || '#top').slice(1);
+  activateTab(startTab, { scroll: false, updateHash: false });
+  // Deep-linking to a #hash on load can trigger the browser's own native
+  // jump-to-anchor after this script runs, landing content behind the
+  // sticky nav. Re-assert the top-of-page scroll once that settles.
+  if(location.hash) window.addEventListener('load', () => window.scrollTo(0, 0));
 </script>
 </body>
 </html>
