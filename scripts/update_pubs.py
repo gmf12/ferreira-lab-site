@@ -4,7 +4,7 @@
 Substitui o trecho entre <!-- ORCID-PUBS:START --> e <!-- ORCID-PUBS:END -->.
 Uso: python3 scripts/update_pubs.py   (só stdlib, requer rede)
 """
-import html, json, re, subprocess, sys, urllib.error, urllib.request
+import datetime, html, json, re, subprocess, sys, urllib.error, urllib.request
 from pathlib import Path
 
 ORCID = "0000-0002-1952-9428"
@@ -57,6 +57,10 @@ def build(groups):
         w = g["work-summary"][0]
         pd = w.get("publication-date") or {}
         year = (pd.get("year") or {}).get("value") or "—"
+        # ORCID às vezes traz o ano do fascículo (ex.: 2027) para artigo já online:
+        # nunca mostrar ano no futuro.
+        if year.isdigit():
+            year = str(min(int(year), datetime.date.today().year))
         raw = w["title"]["title"]["value"]
         journal = (w.get("journal-title") or {}).get("value") or ""
         doi = doi_of(g)

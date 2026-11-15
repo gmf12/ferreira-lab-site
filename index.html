@@ -151,6 +151,7 @@
   .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
   .gitem{ border-radius:16px; overflow:hidden; border:2px solid var(--petrol); background:#fff; box-shadow:0 5px 0 rgba(0,74,74,0.1); }
   .gitem img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+  .gitem img.top{ object-position:center 22%; }
   .gitem .cap{ padding:12px 14px; }
   .gitem .cap .t{ font-family:var(--font-display); font-weight:600; font-size:14px; color:var(--petrol); line-height:1.25; }
   .gitem .cap .d{ font-family:var(--font-mono); font-size:11px; color:var(--teal); margin-top:3px; text-transform:uppercase; letter-spacing:0.04em; }
@@ -827,37 +828,35 @@
         </div>
       </div>
       <div class="gitem">
-        <img src="confra/7-lucas-emmsb-lncc.jpg" alt="Lucas Diniz apresentando pôster na XII EMMSB, LNCC">
+        <img src="confra/7-lucas-emmsb-lncc.jpg" alt="Lucas Diniz apresentando pôster na XII EMMSB, LNCC" class="top">
         <div class="cap">
           <div class="t" data-pt="Lucas Diniz (Doutorando) apresentando nossa pesquisa na XII EMMSB · LNCC" data-en="Lucas Diniz (PhD student) presenting our research at the XII EMMSB · LNCC">Lucas Diniz (Doutorando) apresentando nossa pesquisa na XII EMMSB · LNCC</div>
           <div class="d" data-pt="Agosto de 2026" data-en="August 2026">Agosto de 2026</div>
         </div>
       </div>
       <div class="gitem">
-        <img src="confra/8-gabriel-emmsb-lncc.jpg" alt="Gabriel Ribeiro apresentando pôster na XII EMMSB, LNCC">
+        <img src="confra/8-gabriel-emmsb-lncc.jpg" alt="Gabriel Ribeiro apresentando pôster na XII EMMSB, LNCC" class="top">
         <div class="cap">
           <div class="t" data-pt="Gabriel Ribeiro (IC) apresentando nossa pesquisa na XII EMMSB · LNCC" data-en="Gabriel Ribeiro (Undergrad) presenting our research at the XII EMMSB · LNCC">Gabriel Ribeiro (IC) apresentando nossa pesquisa na XII EMMSB · LNCC</div>
           <div class="d" data-pt="Agosto de 2026" data-en="August 2026">Agosto de 2026</div>
         </div>
       </div>
-      </div>
-      </div>
       <div class="gitem">
-        <img src="confra/11-siicusp-ana-giovanna.jpg" alt="Ana Giovanna no 34º SIICUSP">
+        <img src="confra/11-siicusp-ana-giovanna.jpg" alt="Ana Giovanna no 34º SIICUSP" class="top">
         <div class="cap">
           <div class="t" data-pt="Ana Giovanna (IC) · 34º SIICUSP" data-en="Ana Giovanna (Undergrad) · 34th SIICUSP">Ana Giovanna (IC) · 34º SIICUSP</div>
           <div class="d" data-pt="9 de outubro de 2026" data-en="October 9, 2026">9 de outubro de 2026</div>
         </div>
       </div>
       <div class="gitem">
-        <img src="confra/12-siicusp-gabriel.jpg" alt="Gabriel Ribeiro no 34º SIICUSP">
+        <img src="confra/12-siicusp-gabriel.jpg" alt="Gabriel Ribeiro no 34º SIICUSP" class="top">
         <div class="cap">
           <div class="t" data-pt="Gabriel Ribeiro (IC) · 34º SIICUSP" data-en="Gabriel Ribeiro (Undergrad) · 34th SIICUSP">Gabriel Ribeiro (IC) · 34º SIICUSP</div>
           <div class="d" data-pt="9 de outubro de 2026" data-en="October 9, 2026">9 de outubro de 2026</div>
         </div>
       </div>
       <div class="gitem">
-        <img src="confra/13-siicusp-miriam.jpg" alt="Miriam no 34º SIICUSP">
+        <img src="confra/13-siicusp-miriam.jpg" alt="Miriam no 34º SIICUSP" class="top">
         <div class="cap">
           <div class="t" data-pt="Miriam (IC) · 34º SIICUSP" data-en="Miriam (Undergrad) · 34th SIICUSP">Miriam (IC) · 34º SIICUSP</div>
           <div class="d" data-pt="9 de outubro de 2026" data-en="October 9, 2026">9 de outubro de 2026</div>
@@ -869,12 +868,14 @@
           <div class="t" data-pt="Confraternização · chegada do Orlando Pineda" data-en="Get-together · welcoming Orlando Pineda">Confraternização · chegada do Orlando Pineda</div>
           <div class="d" data-pt="Novembro de 2026" data-en="November 2026">Novembro de 2026</div>
         </div>
+      </div>
       <div class="gitem">
         <img src="confra/9-defesa-eduardo.jpg" alt="Defesa de tese de doutorado do Eduardo">
         <div class="cap">
           <div class="t" data-pt="Defesa de tese de doutorado do Eduardo" data-en="Eduardo's PhD thesis defense">Defesa de tese de doutorado do Eduardo</div>
           <div class="d" data-pt="13 de novembro de 2026" data-en="November 13, 2026">13 de novembro de 2026</div>
         </div>
+      </div>
       <div class="gitem">
         <img src="confra/10-defesa-eduardo-hirata.jpg" alt="Eduardo, Glaucio e Prof. Mario Hirata na defesa de tese">
         <div class="cap">
@@ -923,7 +924,7 @@
     <div class="pub-list reveal">
       <!-- ORCID-PUBS:START -->
       <div class="pub">
-        <div class="pub-year">2027</div>
+        <div class="pub-year">2026</div>
         <div class="pub-main">
           <div class="pub-title"><a href="https://doi.org/10.1016/j.jorganchem.2026.124337" target="_blank" rel="noopener">Overcoming analytical challenges in organotellurium compounds using an AQbD-based stability-indicating HPLC method with in silico insight</a></div>
           <div class="pub-meta">Journal of Organometallic Chemistry</div>
@@ -1609,15 +1610,31 @@
 </script>
 <script>
 (function(){
-  var v=document.getElementById('hdac-video'), b=document.getElementById('hdac-sound');
-  if(!v||!b) return;
-  b.addEventListener('click',function(){
-    v.muted=!v.muted;
-    if(!v.muted) v.play().catch(function(){});
+  var v=document.getElementById('hdac-video'), b=document.getElementById('hdac-sound'), panel=document.getElementById('destaque');
+  if(!v||!b||!panel) return;
+  function ui(){
     b.textContent=v.muted?'🔇':'🔊';
     b.setAttribute('aria-pressed',String(!v.muted));
     b.setAttribute('aria-label',v.muted?'Ligar som':'Desligar som');
+  }
+  function enter(){
+    v.currentTime=0; v.muted=false;
+    var p=v.play();
+    if(p&&p.catch) p.catch(function(){ v.muted=true; v.play().catch(function(){}); ui(); });
+    ui();
+  }
+  function leave(){ v.pause(); v.muted=true; ui(); }
+  b.addEventListener('click',function(){
+    v.muted=!v.muted;
+    if(!v.muted) v.play().catch(function(){});
+    ui();
   });
+  var was=panel.classList.contains('active');
+  new MutationObserver(function(){
+    var now=panel.classList.contains('active');
+    if(now&&!was) enter(); else if(!now&&was) leave();
+    was=now;
+  }).observe(panel,{attributes:true,attributeFilter:['class']});
 })();
 </script>
 </body>
