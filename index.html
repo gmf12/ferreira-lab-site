@@ -344,7 +344,10 @@
   footer .fbrand{ display:flex; align-items:center; gap:12px; }
   footer .fbrand img{ width:44px; height:44px; border-radius:50%; background:#fff; }
   footer .fbrand .ft{ font-family:var(--font-display); font-weight:600; font-size:15px; color:var(--cream); }
-  footer .fmeta{ font-family:var(--font-mono); font-size:12px; }
+  footer .fmeta{ font-family:var(--font-mono); font-size:12px; text-align:right; }
+  footer .fcredit{ margin-top:6px; font-size:11px; opacity:0.85; }
+  footer .fcredit a{ color:inherit; text-decoration:underline; }
+  @media (max-width:700px){ footer .fmeta{ text-align:left; } }
 
   /* ---------- Reveal ---------- */
   .reveal{ opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
@@ -1490,7 +1493,9 @@
       <img src="logo.png" alt="Emblema do LIBNM">
       <span class="ft">LIBNM · Ferreira Lab</span>
     </div>
-    <div class="fmeta">© 2026 · Institute of Chemistry — USP</div>
+    <div class="fmeta">© 2026 · Institute of Chemistry — USP
+      <div class="fcredit"><span data-pt="Música do vídeo em destaque:" data-en="Featured video music:">Música do vídeo em destaque:</span> “Science Documentary”, Lexin_Music · <a href="https://pixabay.com/music/build-up-scenes-science-documentary-169621/" target="_blank" rel="noopener">Pixabay</a></div>
+    </div>
   </div>
 </footer>
 
