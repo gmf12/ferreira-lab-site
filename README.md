@@ -12,6 +12,20 @@ quadrada em `team/`, nome, descrição do projeto e badges de FAPESP/ORCID. Para
 adicionar alguém, copie um `stu-card` existente e ajuste foto, nome, texto e
 links.
 
+## Publicações (sincronizadas com o ORCID)
+
+A lista da aba Publicações é gerada de `pub.orcid.org` (ORCID 0000-0002-1952-9428)
+por `scripts/update_pubs.py`, entre os marcadores `ORCID-PUBS:START/END` do
+`index.html`. O workflow `.github/workflows/sync-orcid.yml` roda todo dia e
+faz commit se houver paper novo (o Netlify publica em seguida). Para forçar:
+aba Actions → "Sincronizar publicações (ORCID)" → Run workflow, ou
+`python3 scripts/update_pubs.py` localmente. Não edite a lista à mão.
+
+## SnorMol
+
+O app QSAR é um único HTML autocontido em `snormol/index.html`, com guia em PDF
+e dados de exemplo em `snormol/`.
+
 ## Rodar localmente
 
 Abra `index.html` direto no navegador, ou sirva a pasta:

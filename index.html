@@ -216,6 +216,8 @@
   .pub:hover{ padding-left:12px; }
   .pub-year{ font-family:var(--font-display); font-weight:700; font-size:26px; color:var(--teal-bright); }
   .pub-title{ font-size:16.5px; font-weight:700; line-height:1.35; color:var(--petrol); }
+  .pub-title a{ color:inherit; text-decoration:none; border-bottom:1.5px solid transparent; transition:border-color .2s; }
+  .pub-title a:hover{ border-bottom-color:var(--teal-bright); }
   .pub-meta{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); margin-top:5px; }
   .pub-tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; padding:5px 12px; border-radius:100px; border:1.5px solid var(--line); white-space:nowrap; color:var(--ink-soft); background:#fff; }
 
@@ -628,6 +630,16 @@
               <a class="stu-badge orcid" href="https://orcid.org/0009-0006-9045-5018" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
+          <div class="stu-card">
+            <div class="stu-head">
+              <div class="stu-photo"><img src="team/gian-rodrigues.jpg" alt="Gian Vitor Rodrigues"></div>
+              <h5>Gian Vitor Rodrigues</h5>
+            </div>
+            <p class="proj" data-pt="Silenciamento covalente da PCSK9: descoberta de pequenas moléculas direcionadas à lisina e orientada pela estrutura." data-en="Covalent silencing of PCSK9: structure-guided discovery of lysine-targeting small molecules.">Silenciamento covalente da PCSK9: descoberta de pequenas moléculas direcionadas à lisina e orientada pela estrutura.</p>
+            <div class="stu-badges">
+              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F22500-5%22" target="_blank" rel="noopener">FAPESP 2026/22500-5</a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -695,17 +707,6 @@
               <a class="stu-badge orcid" href="https://orcid.org/0009-0005-4254-1870" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
             </div>
           </div>
-          <div class="stu-card">
-            <div class="stu-head">
-              <div class="stu-photo"><img src="team/joao-gabriel.jpg" alt="João Gabriel de Souza Carvalho"></div>
-              <h5>João Gabriel de Souza Carvalho</h5>
-            </div>
-            <p class="proj" data-pt="Síntese de tioglicosídeos via sais de Bunte: rota modular para plataformas de degradação proteica direcionada de alvos intracelulares." data-en="Synthesis of thioglycosides via Bunte salts: a modular route for targeted protein-degradation platforms of intracellular targets.">Síntese de tioglicosídeos via sais de Bunte: rota modular para plataformas de degradação proteica direcionada de alvos intracelulares.</p>
-            <div class="stu-badges">
-              <a class="stu-badge" href="https://bv.fapesp.br/pt/pesquisa/buscador/?q=%222026%2F19922-5%22" target="_blank" rel="noopener">FAPESP 2026/19922-5</a>
-              <a class="stu-badge orcid" href="https://orcid.org/0009-0008-5329-2445" target="_blank" rel="noopener"><svg class="ico-orcid"><use href="#icon-orcid"></use></svg>ORCID</a>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -724,6 +725,17 @@
       <p data-pt="Programas desenvolvidos pelo LIBNM para acelerar o próprio fluxo de descoberta de fármacos." data-en="Programs developed by LIBNM to speed up our own drug-discovery workflow.">Programas desenvolvidos pelo LIBNM para acelerar o próprio fluxo de descoberta de fármacos.</p>
     </div>
     <div class="software-grid reveal">
+      <div class="swcard" style="grid-column:1/-1;">
+        <span class="sw-status sw-status-live" data-pt="Disponível" data-en="Available">Disponível</span>
+        <div class="sw-logo"><img src="mascote.png" alt="SnorMol"></div>
+        <h3>SnorMol QSAR</h3>
+        <p data-pt="Aplicativo web gratuito para QSAR: HQSAR, CoMFA, CoMSIA e QSAR clássico, com visualização 3D e relatório. Roda inteiramente no seu navegador: nenhum dado sai do seu computador." data-en="Free web app for QSAR: HQSAR, CoMFA, CoMSIA and classical QSAR, with 3D visualization and report. Runs entirely in your browser: no data leaves your computer.">Aplicativo web gratuito para QSAR: HQSAR, CoMFA, CoMSIA e QSAR clássico, com visualização 3D e relatório. Roda inteiramente no seu navegador: nenhum dado sai do seu computador.</p>
+        <div class="stu-badges" style="margin-top:18px;">
+          <a class="stu-badge" href="snormol/" target="_blank" rel="noopener" data-pt="Abrir SnorMol →" data-en="Open SnorMol →">Abrir SnorMol →</a>
+          <a class="stu-badge" href="snormol/guia_SnorMol_QSAR.pdf" target="_blank" rel="noopener" data-pt="Guia (PDF)" data-en="Guide (PDF)">Guia (PDF)</a>
+          <a class="stu-badge" href="snormol/exemplos/qitb_diarilpirazois_COX2.csv" download data-pt="Dados de exemplo" data-en="Example data">Dados de exemplo</a>
+        </div>
+      </div>
       <div class="swcard">
         <span class="sw-status" data-pt="Em construção" data-en="Under construction">Em construção</span>
         <div class="sw-logo"><img src="protygon.png" alt="Protygon"></div>
@@ -820,6 +832,48 @@
           <div class="d" data-pt="Agosto de 2026" data-en="August 2026">Agosto de 2026</div>
         </div>
       </div>
+      <div class="gitem">
+        <img src="confra/9-defesa-eduardo.jpg" alt="Defesa de tese de doutorado do Eduardo">
+        <div class="cap">
+          <div class="t" data-pt="Defesa de tese de doutorado do Eduardo" data-en="Eduardo's PhD thesis defense">Defesa de tese de doutorado do Eduardo</div>
+          <div class="d" data-pt="2026" data-en="2026">2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/10-defesa-eduardo-hirata.jpg" alt="Eduardo, Glaucio e Prof. Mario Hirata na defesa de tese">
+        <div class="cap">
+          <div class="t" data-pt="Defesa do Eduardo · com o Prof. Mario Hirata, meu pai científico" data-en="Eduardo's defense · with Prof. Mario Hirata, my scientific father">Defesa do Eduardo · com o Prof. Mario Hirata, meu pai científico</div>
+          <div class="d" data-pt="2026" data-en="2026">2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/11-siicusp-ana-giovanna.jpg" alt="Ana Giovanna no 34º SIICUSP">
+        <div class="cap">
+          <div class="t" data-pt="Ana Giovanna (IC) · 34º SIICUSP" data-en="Ana Giovanna (Undergrad) · 34th SIICUSP">Ana Giovanna (IC) · 34º SIICUSP</div>
+          <div class="d" data-pt="2026" data-en="2026">2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/12-siicusp-gabriel.jpg" alt="Gabriel Ribeiro no 34º SIICUSP">
+        <div class="cap">
+          <div class="t" data-pt="Gabriel Ribeiro (IC) · 34º SIICUSP" data-en="Gabriel Ribeiro (Undergrad) · 34th SIICUSP">Gabriel Ribeiro (IC) · 34º SIICUSP</div>
+          <div class="d" data-pt="2026" data-en="2026">2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/13-siicusp-miriam.jpg" alt="Miriam no 34º SIICUSP">
+        <div class="cap">
+          <div class="t" data-pt="Miriam (IC) · 34º SIICUSP" data-en="Miriam (Undergrad) · 34th SIICUSP">Miriam (IC) · 34º SIICUSP</div>
+          <div class="d" data-pt="2026" data-en="2026">2026</div>
+        </div>
+      </div>
+      <div class="gitem">
+        <img src="confra/14-chegada-orlando.jpg" alt="Confraternização pela chegada do Orlando Pineda">
+        <div class="cap">
+          <div class="t" data-pt="Confraternização · chegada do Orlando Pineda" data-en="Get-together · welcoming Orlando Pineda">Confraternização · chegada do Orlando Pineda</div>
+          <div class="d" data-pt="Novembro de 2026" data-en="November 2026">Novembro de 2026</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -852,77 +906,439 @@
     <div class="sec-head reveal">
       <div>
         <span class="eyebrow" data-pt="Produção científica" data-en="Scientific output">Produção científica</span>
-        <h2 data-pt="Publicações selecionadas" data-en="Selected publications">Publicações selecionadas</h2>
+        <h2 data-pt="Publicações" data-en="Publications">Publicações</h2>
       </div>
-      <p data-pt="Uma amostra representativa do trabalho do grupo. Lista completa sob solicitação." data-en="A representative sample of the group's work. Full list available on request.">Uma amostra representativa do trabalho do grupo. Lista completa sob solicitação.</p>
+      <p><span id="pub-count">53</span> <span data-pt="trabalhos listados, sincronizados automaticamente com o ORCID do PI." data-en="works listed, automatically synced with the PI's ORCID.">trabalhos listados, sincronizados automaticamente com o ORCID do PI.</span></p>
     </div>
     <div class="pub-list reveal">
+      <!-- ORCID-PUBS:START -->
+      <div class="pub">
+        <div class="pub-year">2027</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.jorganchem.2026.124337" target="_blank" rel="noopener">Overcoming analytical challenges in organotellurium compounds using an AQbD-based stability-indicating HPLC method with in silico insight</a></div>
+          <div class="pub-meta">Journal of Organometallic Chemistry</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
       <div class="pub">
         <div class="pub-year">2026</div>
         <div class="pub-main">
-          <div class="pub-title">Antiviral Potential of 3,4-Dimethoxychalcone Against SARS-CoV-2</div>
-          <div class="pub-meta">Ferreira et al. · Current Medicinal Chemistry</div>
+          <div class="pub-title"><a href="https://doi.org/10.3390/molecules31203691" target="_blank" rel="noopener">New Organic Compounds Against Scedosporium and Mucorales: Antifungal Activity and Mechanisms of Cell Wall and Membrane Disruption</a></div>
+          <div class="pub-meta">Molecules</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.2174/0109298673388849260203095838" target="_blank" rel="noopener">Antiviral Potential of 3,4-Dimethoxychalcone Against SARS-CoV-2: A Promising Candidate</a></div>
+          <div class="pub-meta">Current Medicinal Chemistry</div>
         </div>
         <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
       </div>
       <div class="pub">
         <div class="pub-year">2025</div>
         <div class="pub-main">
-          <div class="pub-title">Mapping the APOE structurally on missense variants in elderly Brazilians</div>
-          <div class="pub-meta">Ferreira et al. · J. Biomol. Struct. Dyn.</div>
+          <div class="pub-title"><a href="https://doi.org/10.1080/07391102.2024.2328743" target="_blank" rel="noopener">Mapping the APOE structurally on missense variants in elderly Brazilians</a></div>
+          <div class="pub-meta">Journal of Biomolecular Structure and Dynamics</div>
         </div>
         <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
       </div>
       <div class="pub">
         <div class="pub-year">2025</div>
         <div class="pub-main">
-          <div class="pub-title">Druggable Targets in Zika Virus: A Systematic Review of Therapeutic Opportunities in Brazil</div>
-          <div class="pub-meta">Ferreira et al. · Current Topics in Medicinal Chemistry</div>
+          <div class="pub-title"><a href="https://doi.org/10.2174/0115680266388856250811094000" target="_blank" rel="noopener">Druggable Targets in Zika Virus: A Systematic Review of Therapeutic Opportunities in Brazil</a></div>
+          <div class="pub-meta">Current Topics in Medicinal Chemistry</div>
         </div>
         <span class="pub-tag" data-pt="Revisão" data-en="Review">Revisão</span>
       </div>
       <div class="pub">
         <div class="pub-year">2024</div>
         <div class="pub-main">
-          <div class="pub-title">Predicted deleterious variants in ABCA1, LPL, LPA and KIF6 are associated with statin response</div>
-          <div class="pub-meta">Ferreira, Hirata et al. · Pharmacogenetics and Genomics</div>
+          <div class="pub-title"><a href="https://doi.org/10.1021/acschembio.4c00478" target="_blank" rel="noopener">Correction to “Design, Synthesis, and Mechanistic Studies of (R)-3-Amino-5,5-difluorocyclohex-1-ene-1-carboxylic Acid as an Inactivator of Human Ornithine Aminotransferase”</a></div>
+          <div class="pub-meta">ACS Chemical Biology</div>
+        </div>
+        <span class="pub-tag" data-pt="Errata" data-en="Erratum">Errata</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1097/fpc.0000000000000524" target="_blank" rel="noopener">Predicted deleterious variants in ABCA1, LPL, LPA and KIF6 are associated with statin response and adverse events in patients with familial hypercholesterolemia and disturb protein structure and stability</a></div>
+          <div class="pub-meta">Pharmacogenetics and Genomics</div>
         </div>
         <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
       </div>
       <div class="pub">
         <div class="pub-year">2024</div>
         <div class="pub-main">
-          <div class="pub-title">Effects of LDLR variants on protein structure and functional activity in HepG2 cells</div>
-          <div class="pub-meta">Ferreira, Hirata et al. · Gene</div>
+          <div class="pub-title"><a href="https://doi.org/10.1021/acschembio.4c00022" target="_blank" rel="noopener">Design, Synthesis, and Mechanistic Studies of (R)-3-Amino-5,5-difluorocyclohex-1-ene-1-carboxylic Acid as an Inactivator of Human Ornithine Aminotransferase</a></div>
+          <div class="pub-meta">ACS Chemical Biology</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.2174/1570180820666230131111033" target="_blank" rel="noopener">Aryl-isoquinoline as a Potential Scaffold for Novel Antitumor Agents against Glioblastoma Cells</a></div>
+          <div class="pub-meta">Letters in Drug Design &amp; Discovery</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.gene.2023.147821" target="_blank" rel="noopener">Effects of LDLR variants rs5928, rs750518671 and rs879254797 on protein structure and functional activity in HepG2 cells transfected with CRISPR/Cas9 constructs</a></div>
+          <div class="pub-meta">Gene</div>
         </div>
         <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
       </div>
       <div class="pub">
         <div class="pub-year">2023</div>
         <div class="pub-main">
-          <div class="pub-title">Dynamics of the personalities of PCSK9 on missense variants from elderly cohort studies</div>
-          <div class="pub-meta">Lopes, Oliveira, Dati, Naslavsky, Ferreira, Hirata · J. Biomol. Struct. Dyn.</div>
+          <div class="pub-title"><a href="https://doi.org/10.1080/07391102.2023.2191140" target="_blank" rel="noopener">Dynamics of the personalities of PCSK9 on missense variants (rs505151 and rs562556) from elderly cohort studies in Brazil</a></div>
+          <div class="pub-meta">Journal of Biomolecular Structure and Dynamics</div>
         </div>
         <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
       </div>
       <div class="pub">
         <div class="pub-year">2023</div>
         <div class="pub-main">
-          <div class="pub-title">Identification of pathogenic variants in Brazilian cohort with Familial hypercholesterolemia</div>
-          <div class="pub-meta">Ferreira, Hirata et al. · Gene</div>
+          <div class="pub-title"><a href="https://doi.org/10.1208/s12249-023-02655-z" target="_blank" rel="noopener">Innovative Microemulsion Loaded with Unusual Dimeric Flavonoids from Fridericia platyphylla (Cham.) L.G. Lohmann Roots</a></div>
+          <div class="pub-meta">AAPS PharmSciTech</div>
         </div>
         <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
       </div>
       <div class="pub">
         <div class="pub-year">2023</div>
         <div class="pub-main">
-          <div class="pub-title"><em>Trypanosoma cruzi</em> Sirtuin 2 as a Relevant Druggable Target: New Inhibitors Developed by Computer-Aided Drug Design</div>
-          <div class="pub-meta">Ferreira, Kronenberger, Maltarollo, Trossini et al. · Pharmaceuticals</div>
+          <div class="pub-title"><a href="https://doi.org/10.1080/07391102.2023.2270528" target="_blank" rel="noopener">Exploring the dark side of tertiary and quaternary structure dynamics in <em>Mtb</em> FBPaseII</a></div>
+          <div class="pub-meta">Journal of Biomolecular Structure and Dynamics</div>
         </div>
         <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
       </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1080/1354750X.2023.2268859" target="_blank" rel="noopener">Association of occupational exposure to pesticides with overweight in farmers in Southern Brazil</a></div>
+          <div class="pub-meta">Biomarkers</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.3390/ph16071028" target="_blank" rel="noopener">Covalent Inhibitors for Neglected Diseases: An Exploration of Novel Therapeutic Options</a></div>
+          <div class="pub-meta">Pharmaceuticals</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1080/07391102.2023.2235603" target="_blank" rel="noopener">Exploring the conformational dynamics of the CRD4: a model for receptor lysosomal activity shifts in search of 'sweet’ and ‘sour’ states</a></div>
+          <div class="pub-meta">Journal of Biomolecular Structure and Dynamics</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.gene.2023.147501" target="_blank" rel="noopener">Identification of pathogenic variants in the Brazilian cohort with Familial hypercholesterolemia using exon-targeted gene sequencing</a></div>
+          <div class="pub-meta">Gene</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1021/jacs.3c03364" target="_blank" rel="noopener">Correction to “Rational Design, Synthesis, and Mechanism of (3S,4R)-3-Amino-4-(difluoromethyl)cyclopent-1-ene-1-carboxylic Acid: Employing a Second-Deprotonation Strategy for Selectivity of Human Ornithine Aminotransferase over GABA Aminotransferase”</a></div>
+          <div class="pub-meta">Journal of the American Chemical Society</div>
+        </div>
+        <span class="pub-tag" data-pt="Errata" data-en="Erratum">Errata</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.3390/ph16030428" target="_blank" rel="noopener">Trypanosoma cruzi Sirtuin 2 as a Relevant Druggable Target: New Inhibitors Developed by Computer-Aided Drug Design</a></div>
+          <div class="pub-meta">Pharmaceuticals</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.3390/molecules28031133" target="_blank" rel="noopener">Structural and Mechanistic Basis for the Inactivation of Human Ornithine Aminotransferase by (3S,4S)-3-Amino-4-fluorocyclopentenecarboxylic Acid</a></div>
+          <div class="pub-meta">Molecules</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2023</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1208/s12249-023-02688-4" target="_blank" rel="noopener">Correction to: Innovative Microemulsion Loaded with Unusual Dimeric Flavonoids from Fridericia platyphylla (Cham.) L.G. Lohmann Roots (AAPS PharmSciTech, (2023), 24, 8, (212), 10.1208/s12249-023-02655-z)</a></div>
+          <div class="pub-meta">AAPS PharmSciTech</div>
+        </div>
+        <span class="pub-tag" data-pt="Errata" data-en="Erratum">Errata</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1038/s41598-022-15181-y" target="_blank" rel="noopener">Inhibitor induced conformational changes in SARS-COV-2 papain-like protease</a></div>
+          <div class="pub-meta">Scientific Reports</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.gene.2022.147084" target="_blank" rel="noopener">LDLR missense variants disturb structural conformation and LDLR activity in T-lymphocytes of Familial Hypercholesterolemia patients</a></div>
+          <div class="pub-meta">Gene</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1021/acs.jcim.2c01178" target="_blank" rel="noopener">Do Go Chasing Waterfalls: Enoyl Reductase (FabI) in Complex with Inhibitors Stabilizes the Tetrameric Structure and Opens Water Channels</a></div>
+          <div class="pub-meta">Journal of Chemical Information and Modeling</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1002/cmdc.202200556" target="_blank" rel="noopener">When the two become one: conformational changes in FXR/RXR heterodimers bound to steroidal antagonists</a></div>
+          <div class="pub-meta">ChemMedChem</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.33448/rsd-v11i14.36493" target="_blank" rel="noopener">Exposure to pesticides and overweight - A systematic review</a></div>
+          <div class="pub-meta">Research, Society and Development</div>
+        </div>
+        <span class="pub-tag" data-pt="Revisão" data-en="Review">Revisão</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.2174/0929866529666220919143316" target="_blank" rel="noopener">Zika Virus NS2B-NS3 Protease: Quantum Chemical Properties Insights into Designing Inhibitory Peptides</a></div>
+          <div class="pub-meta">Protein &amp; Peptide Letters</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.gene.2022.146979" target="_blank" rel="noopener">Effects of PCSK9 missense variants on molecular conformation and biological activity in transfected HEK293FT cells</a></div>
+          <div class="pub-meta">Gene</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.3390/jcdd9090299" target="_blank" rel="noopener">Post-Partum Depression Lactating Rat Model for Evaluating Ketamine’s Safety as a Pharmacotherapeutic Treatment: Roles in Cardiac and Urinary Function</a></div>
+          <div class="pub-meta">Journal of Cardiovascular Development and Disease</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.3390/toxics10050269" target="_blank" rel="noopener">Development, Optimization, and Validation of Forensic Analytical Method for Quantification of Anticholinesterase Pesticides in Biological Matrices from Suspected Cases of Animal Poisoning</a></div>
+          <div class="pub-meta">Toxics</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.jmgm.2022.108125" target="_blank" rel="noopener">Carnitine palmitoyl transferase I: Conformational changes induced by long-chain fatty acyl CoA ligands</a></div>
+          <div class="pub-meta">Journal of Molecular Graphics and Modelling</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.3390/pharmaceutics14050944" target="_blank" rel="noopener">Genetic Variant ABCC1 rs45511401 Is Associated with Increased Response to Statins in Patients with Familial Hypercholesterolemia</a></div>
+          <div class="pub-meta">Pharmaceutics</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2022</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1021/jacs.2c00924" target="_blank" rel="noopener">Rational Design, Synthesis, and Mechanism of (3S,4R)-3-Amino-4-(difluoromethyl)cyclopent-1-ene-1-carboxylic Acid: Employing a Second-Deprotonation Strategy for Selectivity of Human Ornithine Aminotransferase over GABA Aminotransferase</a></div>
+          <div class="pub-meta">Journal of the American Chemical Society</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2021</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1080/07391102.2021.1970626" target="_blank" rel="noopener">SARS-COV-2 Mpro conformational changes induced by covalently bound ligands</a></div>
+          <div class="pub-meta">Journal of Biomolecular Structure and Dynamics</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2021</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.cbpc.2021.109028" target="_blank" rel="noopener">Isohemigossypolone: Antiophidic properties of a naphthoquinone isolated from Pachira aquatica Aubl.</a></div>
+          <div class="pub-meta">Comparative Biochemistry and Physiology Part C: Toxicology &amp; Pharmacology</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2021</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.jsb.2021.107773" target="_blank" rel="noopener">Role of a high centrality residue in protein dynamics and thermal stability</a></div>
+          <div class="pub-meta">Journal of Structural Biology</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2021</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1021/jacs.1c02456" target="_blank" rel="noopener">Turnover and Inactivation Mechanisms for (S)-3-Amino-4,4-difluorocyclopent-1-enecarboxylic Acid, a Selective Mechanism-Based Inactivator of Human Ornithine Aminotransferase</a></div>
+          <div class="pub-meta">Journal of the American Chemical Society</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2021</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.fsigen.2021.102478" target="_blank" rel="noopener">Association of variants in MYH7, MYBPC3 and TNNT2 with sudden cardiac death-related risk factors in Brazilian patients with hypertrophic cardiomyopathy</a></div>
+          <div class="pub-meta">Forensic Science International: Genetics</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2021</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.bmc.2021.116085" target="_blank" rel="noopener">Structure-Activity Relationship and Mechanistic Studies for a Series of Cinnamyl Hydroxamate Histone Deacetylase Inhibitors</a></div>
+          <div class="pub-meta">Bioorganic &amp; Medicinal Chemistry</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2021</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.toxicon.2021.01.018" target="_blank" rel="noopener">Antiophidic activity of the secondary metabolite lupeol isolated from Zanthoxylum monogynum</a></div>
+          <div class="pub-meta">Toxicon</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2021</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.21037/atm-20-5540" target="_blank" rel="noopener">Late response to rosuvastatin and statin-related myalgia due to SLCO1B1, SLCO1B3, ABCB11, and CYP3A5 variants in a patient with Familial Hypercholesterolemia: a case report</a></div>
+          <div class="pub-meta">Annals of Translational Medicine</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2020</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1007/s00894-020-04531-0" target="_blank" rel="noopener">Characterization of the adipogenic protein E4orf1 from adenovirus 36 through an in silico approach</a></div>
+          <div class="pub-meta">Journal of Molecular Modeling</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2020</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.sapharm.2020.10.007" target="_blank" rel="noopener">Genomics, epigenomics and pharmacogenomics of Familial Hypercholesterolemia (FHBGEP): A study protocol</a></div>
+          <div class="pub-meta">Research in Social and Administrative Pharmacy</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2020</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1021/acs.jmedchem.0c00567" target="_blank" rel="noopener">Rational Design of Suprastat, a Novel Selective Histone Deacetylase 6 Inhibitor with the Ability to Potentiate Immunotherapy in Melanoma Models</a></div>
+          <div class="pub-meta">Journal of Medicinal Chemistry</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2020</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.bmc.2020.115600" target="_blank" rel="noopener">Design, synthesis and biological activity of novel substituted 3-benzoic acid derivatives as MtDHFR inhibitors</a></div>
+          <div class="pub-meta">Bioorganic &amp; Medicinal Chemistry</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2020</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1016/j.bbalip.2020.158776" target="_blank" rel="noopener">Palmitoleic acid reduces high fat diet-induced liver inflammation by promoting PPAR-γ-independent M2a polarization of myeloid cells</a></div>
+          <div class="pub-meta">Biochimica et Biophysica Acta (BBA) - Molecular and Cell Biology of Lipids</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2019</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.3390/molecules24234369" target="_blank" rel="noopener">Inhibition of Porcine Aminopeptidase M (pAMP) by the Pentapeptide Microginins</a></div>
+          <div class="pub-meta">Molecules</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2019</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1080/07391102.2019.1574603" target="_blank" rel="noopener">QSAR studies on the human sirtuin 2 inhibition by non-covalent 7,5,2-anilinobenzamide derivatives.</a></div>
+          <div class="pub-meta">Journal of biomolecular structure &amp; dynamics</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2018</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.4155/fmc-2018-0124" target="_blank" rel="noopener">Synthesis, leishmanicidal activity, structural descriptors and structure–activity relationship of quinoline derivatives</a></div>
+          <div class="pub-meta"></div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2018</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.2174/1568026618666180509150134" target="_blank" rel="noopener">Identification, Characterization and Molecular Modelling Studies of Schistosoma mansoni Dihydrofolate Reductase Inhibitors: From Assay Development to Hit Identification.</a></div>
+          <div class="pub-meta">Current topics in medicinal chemistry</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2017</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.3390/molecules22121884" target="_blank" rel="noopener">Identification, In Vitro Testing and Molecular Docking Studies of Microginins' Mechanism of Angiotensin-Converting Enzyme Inhibition.</a></div>
+          <div class="pub-meta">Molecules (Basel, Switzerland)</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2017</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1111/cbdd.13030" target="_blank" rel="noopener">Fragment-based drug discovery as alternative strategy to the drug development for neglected diseases.</a></div>
+          <div class="pub-meta">Chemical biology &amp; drug design</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2017</div>
+        <div class="pub-main">
+          <div class="pub-title"><a href="https://doi.org/10.1371/journal.pone.0179174" target="_blank" rel="noopener">The anti-inflammatory and immunomodulatory potential of braylin: Pharmacological properties and mechanisms by in silico, in vitro and in vivo approaches.</a></div>
+          <div class="pub-meta">PloS one</div>
+        </div>
+        <span class="pub-tag" data-pt="Artigo" data-en="Article">Artigo</span>
+      </div>
+      <!-- ORCID-PUBS:END -->
     </div>
-    <p class="reveal" style="margin-top:20px;"><a class="cv-link" href="https://orcid.org/0000-0002-1952-9428" target="_blank" rel="noopener" data-pt="Lista completa no ORCID ↗" data-en="Full list on ORCID ↗">Lista completa no ORCID ↗</a></p>
+    <p class="reveal" style="margin-top:20px;"><a class="cv-link" href="https://orcid.org/0000-0002-1952-9428" target="_blank" rel="noopener" data-pt="Ver perfil no ORCID ↗" data-en="View ORCID profile ↗">Ver perfil no ORCID ↗</a></p>
   </div>
 </section>
 
