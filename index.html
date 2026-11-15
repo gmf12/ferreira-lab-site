@@ -203,6 +203,10 @@
   /* ---------- Featured paper ---------- */
   .destaque{ padding:92px 0; background:var(--mint-wash); }
   .destaque-card{ display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; background:#fff; border:2.5px solid var(--petrol); border-radius:24px; padding:28px; box-shadow:0 6px 0 rgba(0,74,74,0.1); }
+  .vwrap{ position:relative; }
+  .vwrap video{ width:100%; border-radius:14px; display:block; }
+  .vsound{ position:absolute; right:12px; bottom:12px; width:44px; height:44px; border-radius:50%; border:2px solid var(--petrol); background:rgba(245,242,234,0.92); font-size:20px; line-height:1; cursor:pointer; }
+  .vsound:hover{ background:#fff; }
   .destaque-card img{ width:100%; border-radius:14px; display:block; }
   .destaque-body h3{ font-family:var(--font-display); font-weight:700; font-size:24px; line-height:1.2; color:var(--petrol); }
   .destaque-body .meta{ font-family:var(--font-mono); font-size:12px; color:var(--teal); margin-top:10px; }
@@ -890,7 +894,10 @@
       <p data-pt="Um destaque da nossa produção científica." data-en="A highlight from our scientific output.">Um destaque da nossa produção científica.</p>
     </div>
     <div class="destaque-card reveal">
-      <video src="destaque-hdac.mp4" poster="destaque-hdac-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Simulação de HDAC e ACE12 em água" style="width:100%;border-radius:14px;display:block;"></video>
+      <div class="vwrap">
+        <video id="hdac-video" src="destaque-hdac.mp4" poster="destaque-hdac-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Simulação de HDAC e ACE12 em água"></video>
+        <button type="button" id="hdac-sound" class="vsound" aria-pressed="false" aria-label="Ligar som" data-pt-label="Ligar som" data-en-label="Sound on">🔇</button>
+      </div>
       <div class="destaque-body">
         <h3>Inhibitor induced conformational changes in SARS-CoV-2 papain-like protease</h3>
         <p class="meta">Ferreira, Pillaiyar, Hirata, Poso, Kronenberger · Scientific Reports (2022)</p>
@@ -1595,6 +1602,19 @@
   // jump-to-anchor after this script runs, landing content behind the
   // sticky nav. Re-assert the top-of-page scroll once that settles.
   if(location.hash) window.addEventListener('load', () => window.scrollTo(0, 0));
+</script>
+<script>
+(function(){
+  var v=document.getElementById('hdac-video'), b=document.getElementById('hdac-sound');
+  if(!v||!b) return;
+  b.addEventListener('click',function(){
+    v.muted=!v.muted;
+    if(!v.muted) v.play().catch(function(){});
+    b.textContent=v.muted?'🔇':'🔊';
+    b.setAttribute('aria-pressed',String(!v.muted));
+    b.setAttribute('aria-label',v.muted?'Ligar som':'Desligar som');
+  });
+})();
 </script>
 </body>
 </html>
