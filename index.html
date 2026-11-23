@@ -190,6 +190,11 @@
   .destaque-game .game-logo{ background:#0b1d1f; border-radius:14px; padding:12px; }
   .destaque-game .game-logo img{ image-rendering:pixelated; border-radius:0; }
 
+  .game-count{ margin-left:auto; flex-shrink:0; text-align:center; padding:16px 22px; border:2px dashed var(--teal); border-radius:18px; background:#fff; min-width:130px; }
+  .game-count .n{ display:block; font-family:var(--font-display); font-weight:700; font-size:34px; line-height:1; color:var(--petrol); }
+  .game-count .l{ display:block; margin-top:6px; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--teal); }
+  .game-count .t{ display:block; margin-top:4px; font-size:11px; color:var(--ink-soft); }
+
   /* ---------- Team ---------- */
   .team{ padding:92px 0; }
 
@@ -381,6 +386,7 @@
     .software-grid{ grid-template-columns:1fr; }
     .destaque-card{ grid-template-columns:1fr; }
     a.swcard.game-card{ flex-direction:column; align-items:flex-start; }
+    .game-count{ margin-left:0; }
     .gallery-grid{ grid-template-columns:repeat(2,1fr); }
     .stu-grid{ grid-template-columns:repeat(2,1fr); }
   }
@@ -768,6 +774,7 @@
           <p data-pt="Jogo educativo em que o SnorMol enfrenta a hipercolesterolemia. Funciona direto no navegador, no computador ou no celular: é só clicar e jogar." data-en="An educational game where SnorMol takes on hypercholesterolemia. Runs right in your browser, on desktop or phone: just click and play.">Jogo educativo em que o SnorMol enfrenta a hipercolesterolemia. Funciona direto no navegador, no computador ou no celular: é só clicar e jogar.</p>
           <span class="play-btn" data-pt="▶ Jogar" data-en="▶ Play">▶ Jogar</span>
         </div>
+        <div class="game-count" title="Acessos de IPs únicos"><span class="n" data-game-unicos>–</span><span class="l" data-pt="jogadores" data-en="players">jogadores</span><span class="t"><span data-game-total>–</span> <span data-pt="partidas abertas" data-en="sessions">partidas abertas</span></span></div>
       </a>
       <div class="swcard">
         <span class="sw-status" data-pt="Em construção" data-en="Under construction">Em construção</span>
@@ -941,6 +948,7 @@
         <p class="desc" data-pt="Ajude o SnorMol a combater a hipercolesterolemia. Sem instalar nada: clique e jogue, no computador ou no celular." data-en="Help SnorMol fight hypercholesterolemia. Nothing to install: click and play, on desktop or phone.">Ajude o SnorMol a combater a hipercolesterolemia. Sem instalar nada: clique e jogue, no computador ou no celular.</p>
         <span class="play-btn" data-pt="▶ Jogar agora" data-en="▶ Play now">▶ Jogar agora</span>
       </div>
+      <div class="game-count" title="Acessos de IPs únicos"><span class="n" data-game-unicos>–</span><span class="l" data-pt="jogadores" data-en="players">jogadores</span><span class="t"><span data-game-total>–</span> <span data-pt="partidas abertas" data-en="sessions">partidas abertas</span></span></div>
     </a>
   </div>
 </section>
@@ -1725,6 +1733,14 @@
     if(now&&!was) enter(); else if(!now&&was) leave();
     was=now;
   }).observe(panel,{attributes:true,attributeFilter:['class']});
+})();
+</script>
+<script>
+(function(){
+  var u=document.querySelectorAll('[data-game-unicos]'),t=document.querySelectorAll('[data-game-total]');
+  fetch('/api/jogo-contador').then(function(r){return r.json();}).then(function(d){
+    u.forEach(function(e){e.textContent=d.unicos;});t.forEach(function(e){e.textContent=d.total;});
+  }).catch(function(){});
 })();
 </script>
 </body>

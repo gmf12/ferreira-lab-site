@@ -58,5 +58,9 @@ const FONTES = {"src/config.js":"export const LARGURA = 480;\nexport const ALTUR
   document.body.appendChild(inicio);
 })();
 </script>
+<script>
+(function(){try{if(sessionStorage.getItem('jogo-contado'))return;sessionStorage.setItem('jogo-contado','1');}catch(e){}
+fetch('/api/jogo-contador',{method:'POST',keepalive:true}).catch(function(){});})();
+</script>
 </body>
 </html>
