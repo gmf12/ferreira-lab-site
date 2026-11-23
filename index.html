@@ -176,6 +176,20 @@
   a.swcard.edu-card:hover{ transform:translateY(-4px); box-shadow:0 10px 0 rgba(0,74,74,0.12); }
   .edu-cta{ margin-top:16px; font-weight:700; color:var(--petrol); display:inline-flex; align-items:center; gap:6px; }
 
+
+  /* ---------- Jogo ---------- */
+  a.swcard.game-card{ cursor:pointer; text-decoration:none; flex-direction:row; align-items:center; gap:28px; background:linear-gradient(135deg,#fff 0%,var(--mint-pale) 100%); transition:transform 0.15s ease, box-shadow 0.15s ease; }
+  a.swcard.game-card:hover{ transform:translateY(-4px); box-shadow:0 10px 0 rgba(0,74,74,0.12); }
+  .game-card .game-logo{ width:150px; height:150px; flex-shrink:0; border-radius:20px; background:#0b1d1f; display:flex; align-items:center; justify-content:center; }
+  .game-card .game-logo img{ width:100%; height:100%; object-fit:contain; image-rendering:pixelated; }
+  .game-card .game-body{ flex:1; }
+  .play-btn{ margin-top:18px; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display); font-weight:700; font-size:16px; padding:12px 24px; border-radius:100px; background:var(--petrol); color:var(--cream); border:2.5px solid var(--petrol); transition:background 0.15s, color 0.15s; }
+  a.game-card:hover .play-btn, a.destaque-game:hover .play-btn{ background:var(--teal-bright); border-color:var(--petrol); color:#fff; }
+  a.destaque-game{ text-decoration:none; margin-top:28px; cursor:pointer; transition:transform 0.15s ease, box-shadow 0.15s ease; }
+  a.destaque-game:hover{ transform:translateY(-4px); box-shadow:0 10px 0 rgba(0,74,74,0.12); }
+  .destaque-game .game-logo{ background:#0b1d1f; border-radius:14px; padding:12px; }
+  .destaque-game .game-logo img{ image-rendering:pixelated; border-radius:0; }
+
   /* ---------- Team ---------- */
   .team{ padding:92px 0; }
 
@@ -366,6 +380,7 @@
     .research-grid{ grid-template-columns:1fr; }
     .software-grid{ grid-template-columns:1fr; }
     .destaque-card{ grid-template-columns:1fr; }
+    a.swcard.game-card{ flex-direction:column; align-items:flex-start; }
     .gallery-grid{ grid-template-columns:repeat(2,1fr); }
     .stu-grid{ grid-template-columns:repeat(2,1fr); }
   }
@@ -745,6 +760,15 @@
           <a class="stu-badge" href="snormol/exemplos/qitb_diarilpirazois_COX2.csv" download data-pt="Dados de exemplo" data-en="Example data">Dados de exemplo</a>
         </div>
       </div>
+      <a class="swcard game-card" href="jogo/" target="_blank" rel="noopener" style="grid-column:1/-1;">
+        <span class="sw-status sw-status-live" data-pt="Jogue agora" data-en="Play now">Jogue agora</span>
+        <div class="game-logo"><img src="jogo/logo.png" alt="SnorMol X Hipercolesterolemia"></div>
+        <div class="game-body">
+          <h3>SnorMol X Hipercolesterolemia</h3>
+          <p data-pt="Jogo educativo em que o SnorMol enfrenta a hipercolesterolemia. Funciona direto no navegador, no computador ou no celular: é só clicar e jogar." data-en="An educational game where SnorMol takes on hypercholesterolemia. Runs right in your browser, on desktop or phone: just click and play.">Jogo educativo em que o SnorMol enfrenta a hipercolesterolemia. Funciona direto no navegador, no computador ou no celular: é só clicar e jogar.</p>
+          <span class="play-btn" data-pt="▶ Jogar" data-en="▶ Play">▶ Jogar</span>
+        </div>
+      </a>
       <div class="swcard">
         <span class="sw-status" data-pt="Em construção" data-en="Under construction">Em construção</span>
         <div class="sw-logo"><img src="protygon.png" alt="Protygon"></div>
@@ -908,6 +932,16 @@
         <p class="desc" data-pt="A histona desacetilase 2 (HDAC2) é um alvo epigenético relevante em câncer. O vídeo mostra uma simulação de dinâmica molecular de 250 ns da HDAC2 em complexo com a ACE12, molécula promissora desenvolvida pelo nosso grupo em colaboração com o grupo do Prof. Pedro Morais Bezerra (UFES)." data-en="Histone deacetylase 2 (HDAC2) is a relevant epigenetic target in cancer. The video shows a 250 ns molecular dynamics simulation of HDAC2 in complex with ACE12, a promising molecule developed by our group in collaboration with Prof. Pedro Morais Bezerra's group (UFES).">A histona desacetilase 2 (HDAC2) é um alvo epigenético relevante em câncer. O vídeo mostra uma simulação de dinâmica molecular de 250 ns da HDAC2 em complexo com a ACE12, molécula promissora desenvolvida pelo nosso grupo em colaboração com o grupo do Prof. Pedro Morais Bezerra (UFES).</p>
       </div>
     </div>
+
+    <a class="destaque-card destaque-game reveal" href="jogo/" target="_blank" rel="noopener">
+      <div class="game-logo"><img src="jogo/logo.png" alt="SnorMol X Hipercolesterolemia"></div>
+      <div class="destaque-body">
+        <h3 data-pt="SnorMol X Hipercolesterolemia: o jogo" data-en="SnorMol X Hypercholesterolemia: the game">SnorMol X Hipercolesterolemia: o jogo</h3>
+        <p class="meta" data-pt="LIBNM · jogo educativo · grátis, no navegador" data-en="LIBNM · educational game · free, in the browser">LIBNM · jogo educativo · grátis, no navegador</p>
+        <p class="desc" data-pt="Ajude o SnorMol a combater a hipercolesterolemia. Sem instalar nada: clique e jogue, no computador ou no celular." data-en="Help SnorMol fight hypercholesterolemia. Nothing to install: click and play, on desktop or phone.">Ajude o SnorMol a combater a hipercolesterolemia. Sem instalar nada: clique e jogue, no computador ou no celular.</p>
+        <span class="play-btn" data-pt="▶ Jogar agora" data-en="▶ Play now">▶ Jogar agora</span>
+      </div>
+    </a>
   </div>
 </section>
 

@@ -39,3 +39,7 @@ python3 -m http.server 8000
 O deploy é automático via Netlify a cada push na branch `main` (conectar este
 repositório em app.netlify.com → "Add new site" → "Import an existing
 project"). Domínio planejado: `ferreiralab.com.br`.
+
+## Jogo
+
+"SnorMol X Hipercolesterolemia" é um HTML autocontido (Phaser embutido) em `jogo/index.html`. Aparece nas abas Software e Em destaque.
